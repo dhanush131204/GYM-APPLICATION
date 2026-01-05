@@ -1,0 +1,311 @@
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../../utils/api';
+import { toast } from 'react-hot-toast';
+import Loading from '../common/Loading';
+import { FiUsers, FiActivity, FiTrendingUp, FiVideo, FiDollarSign, FiLayout, FiAlertCircle, FiSearch, FiMoreVertical, FiMail, FiMessageSquare, FiChevronRight } from 'react-icons/fi';
+import PlanManager from './PlanManager';
+import MediaManager from './MediaManager';
+
+const TrainerDashboard = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedClient, setSelectedClient] = useState(null);
+
+  useEffect(() => {
+    loadMembers();
+  }, []);
+
+  const loadMembers = async () => {
+    try {
+      const response = await api.get('/trainer/members');
+      setMembers(response.data);
+    } catch (error) {
+      toast.error('System synchronization failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <Loading size="lg" />;
+  }
+
+  const StatCard = ({ title, value, subtext, icon: Icon, accentColor }) => (
+    <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-premium transition-all hover:shadow-2xl font-sans">
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">{title}</p>
+          <h3 className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter mb-2">{value}</h3>
+          {subtext && <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{subtext}</p>}
+        </div>
+        <div className={`p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 ${accentColor}`}>
+          <Icon size={18} />
+        </div>
+      </div>
+    </div>
+  );
+
+  const Overview = () => {
+    const activeClients = members.filter(m => m.membership?.status === 'active').length;
+    const totalEarnings = members.reduce((sum, m) => sum + (m.membership?.amount || 0), 0);
+    const atRiskClients = members.filter(m => (m.gamification?.attendanceStreak || 0) === 0 && m.membership?.status === 'active');
+
+    return (
+      <div className="space-y-10 animate-fade-in font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <StatCard
+            title="Managed Users"
+            value={members.length}
+            subtext={`${activeClients} ACTIVE DEPLOYMENTS`}
+            icon={FiUsers}
+            accentColor="text-indigo-500"
+          />
+          <StatCard
+            title="Fiscal Revenue"
+            value={`$${totalEarnings.toLocaleString()}`}
+            subtext="PROJECTED MONTHLY"
+            icon={FiDollarSign}
+            accentColor="text-emerald-500"
+          />
+          <StatCard
+            title="Protocol Load"
+            value={activeClients}
+            subtext="UTILIZATION RATE 84%"
+            icon={FiActivity}
+            accentColor="text-blue-500"
+          />
+          <StatCard
+            title="Risk Factor"
+            value={atRiskClients.length}
+            subtext="STAGNANT ACTIVITY"
+            icon={FiAlertCircle}
+            accentColor="text-amber-500"
+          />
+        </div>
+
+        {atRiskClients.length > 0 && (
+          <div className="bg-amber-50/50 dark:bg-amber-900/10 border border-amber-200/50 dark:border-amber-900/30 rounded-3xl p-8 flex items-start gap-6">
+            <div className="p-3 bg-amber-100 dark:bg-amber-900/40 text-amber-600 rounded-2xl">
+              <FiAlertCircle size={24} />
+            </div>
+            <div>
+              <h4 className="text-lg font-black text-amber-900 dark:text-amber-400 uppercase tracking-tight">Intervention Required</h4>
+              <p className="text-sm text-amber-700 dark:text-amber-500/80 mt-2 leading-relaxed">
+                Critical Alert: {atRiskClients.length} accounts show zero-streak activity.
+                Immediate communication is advised to prevent churn.
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { id: 'plans', title: 'Plan Architect', desc: 'Engineer membership tiers', icon: FiDollarSign, color: 'indigo' },
+            { id: 'media', title: 'Content Forge', desc: 'Sync exercise libraries', icon: FiVideo, color: 'purple' },
+            { id: 'clients', title: 'User Index', desc: 'Managed client protocols', icon: FiUsers, color: 'emerald' },
+          ].map(action => (
+            <button key={action.id} onClick={() => setActiveTab(action.id)} className="group p-8 bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-3xl hover:border-slate-300 dark:hover:border-slate-700 transition-all text-left shadow-premium">
+              <div className={`w-14 h-14 bg-slate-50 dark:bg-slate-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                <action.icon size={22} className={`text-slate-600 dark:text-slate-300`} />
+              </div>
+              <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">{action.title}</h3>
+              <p className="text-[10px] font-bold text-slate-400 uppercase mt-2 tracking-tighter">{action.desc}</p>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const ClientsTable = () => (
+    <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-3xl shadow-premium overflow-hidden animate-fade-in font-sans">
+      <div className="p-8 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+        <div>
+          <h3 className="text-lg font-black text-slate-900 dark:text-white">Active Deployments</h3>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Personnel Management Index</p>
+        </div>
+        <div className="relative">
+          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input
+            type="text"
+            placeholder="SEARCH REGISTRY..."
+            className="pl-12 pr-6 py-3 text-[10px] font-black uppercase tracking-widest border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-all w-64"
+          />
+        </div>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full text-left">
+          <thead className="bg-slate-50/50 dark:bg-slate-900/30">
+            <tr>
+              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Client Identity</th>
+              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">System Status</th>
+              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Tier</th>
+              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Activity Node</th>
+              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Ops</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
+            {members.length === 0 ? (
+              <tr>
+                <td colSpan="5" className="px-8 py-12 text-center text-slate-400 font-bold uppercase text-[10px] tracking-widest">Registry Empty / No Active Links</td>
+              </tr>
+            ) : (
+              members.map((member) => (
+                <tr key={member._id} className="group hover:bg-slate-50/50 dark:hover:bg-slate-900/20 transition-colors">
+                  <td className="px-8 py-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-black text-slate-400 text-xs text-sans">
+                        {member.name.charAt(0)}
+                      </div>
+                      <div>
+                        <div className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">{member.name}</div>
+                        <div className="text-[10px] font-bold text-slate-400">{member.email}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-8 py-6">
+                    <span className="badge bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400">
+                      Operational
+                    </span>
+                  </td>
+                  <td className="px-8 py-6">
+                    <span className="text-xs font-black text-slate-600 dark:text-slate-400 uppercase tracking-tighter">
+                      {member.membership?.planType || 'UNASSIGNED'}
+                    </span>
+                  </td>
+                  <td className="px-8 py-6">
+                    <div className="flex items-center gap-2">
+                      <span className={`w-1.5 h-1.5 rounded-full ${(member.gamification?.attendanceStreak || 0) > 0 ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+                      <span className="text-xs font-black text-slate-900 dark:text-white uppercase">{member.gamification?.attendanceStreak || 0} DAY STREAK</span>
+                    </div>
+                  </td>
+                  <td className="px-8 py-6 text-right">
+                    <button
+                      onClick={() => setSelectedClient(member)}
+                      className="p-2 text-slate-400 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-xl"
+                    >
+                      <FiChevronRight size={18} />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 font-sans">
+      {/* Header Suite */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 border-b border-slate-100 dark:border-slate-800 pb-10">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest rounded-lg mb-4">
+            MGMT SUITE V2.4
+          </div>
+          <h1 className="font-black">Executive Operations.</h1>
+          <p className="text-slate-500 dark:text-slate-400 mt-2">Oversee client progress and manage system architecture.</p>
+        </div>
+
+        <div className="flex space-x-2 bg-slate-50 dark:bg-slate-900/50 p-1.5 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
+          {[
+            { id: 'overview', icon: FiLayout, label: 'OVERVIEW' },
+            { id: 'clients', icon: FiUsers, label: 'REGISTRY' },
+            { id: 'plans', icon: FiDollarSign, label: 'ARCHITECT' },
+            { id: 'media', icon: FiVideo, label: 'REPOSITORY' },
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab.id
+                ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl'
+                : 'text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-800'
+                }`}
+            >
+              <tab.icon className="mr-2 w-3.5 h-3.5" />
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="min-h-[600px]">
+        {activeTab === 'overview' && <Overview />}
+        {activeTab === 'clients' && <ClientsTable />}
+        {activeTab === 'plans' && <PlanManager />}
+        {activeTab === 'media' && <MediaManager />}
+      </div>
+
+      {selectedClient && (
+        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-xl flex items-center justify-center p-4 z-50 animate-fade-in font-sans">
+          <div className="bg-white dark:bg-[#111214] rounded-3xl border border-slate-200 dark:border-slate-800 max-w-xl w-full p-10 shadow-2xl relative overflow-hidden">
+
+            <div className="flex justify-between items-start mb-10">
+              <div className="flex items-center gap-6">
+                <div className="h-16 w-16 rounded-3xl bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 font-black text-2xl">
+                  {selectedClient.name.charAt(0)}
+                </div>
+                <div>
+                  <h2 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">{selectedClient.name}</h2>
+                  <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">{selectedClient.email}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedClient(null)}
+                className="text-slate-300 hover:text-slate-600 transition-colors text-2xl"
+              >
+                &times;
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6 mb-10">
+              <div className="p-6 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl">
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Live Streak</p>
+                <p className="text-3xl font-black text-slate-900 dark:text-white mt-1">{selectedClient.gamification?.attendanceStreak || 0} <span className="text-xs font-bold text-slate-400 uppercase">Days</span></p>
+              </div>
+              <div className="p-6 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl">
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Access Level</p>
+                <p className="text-3xl font-black text-slate-900 dark:text-white mt-1">{selectedClient.gamification?.level || 1}</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <button
+                onClick={async () => {
+                  const note = window.prompt("SECURE CHANNEL: Send direct message to client registry", "Report synchronization complete.");
+                  if (!note) return;
+
+                  try {
+                    await api.post('/trainer/message', {
+                      userId: selectedClient._id,
+                      message: note
+                    });
+                    toast.success("CHANNEL SYNC SUCCESSFUL");
+                  } catch (err) {
+                    toast.error("CHANNEL COMMUNICATION FAILURE");
+                  }
+                }}
+                className="w-full py-5 text-xs font-black uppercase bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-2xl hover:opacity-90 transition-all tracking-[0.2em] flex items-center justify-center gap-3"
+              >
+                <FiMessageSquare /> SEND DIRECTIVE
+              </button>
+
+              <button
+                onClick={() => setSelectedClient(null)}
+                className="w-full py-5 text-[10px] font-black uppercase text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
+              >
+                TERMINATE INSPECTION
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default TrainerDashboard;

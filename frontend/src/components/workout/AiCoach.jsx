@@ -1,0 +1,202 @@
+import { useState, useEffect, useRef } from 'react';
+import api from '../../utils/api';
+import { FiCpu, FiAlertTriangle, FiCheckCircle, FiSend, FiUser, FiActivity } from 'react-icons/fi';
+
+const AiCoach = ({ exerciseName }) => {
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        const fetchInitialGuide = async () => {
+            setLoading(true);
+            try {
+                const res = await api.post('/exercises/ask-ai', { exerciseName });
+                setMessages([{ role: 'ai', content: res.data }]);
+            } catch (err) {
+                setError("SYNCHRONIZATION ERROR: UNABLE TO REACH NEURAL HUB");
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchInitialGuide();
+    }, [exerciseName]);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [messages]);
+
+    const handleSendMessage = async (e) => {
+        e.preventDefault();
+        if (!input.trim() || loading) return;
+
+        const userMsg = input.trim();
+        setInput('');
+        setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+        setLoading(true);
+
+        try {
+            const res = await api.post('/exercises/ask-ai', {
+                exerciseName,
+                query: userMsg
+            });
+            setMessages(prev => [...prev, { role: 'ai', content: res.data }]);
+        } catch (err) {
+            setMessages(prev => [...prev, {
+                role: 'ai',
+                content: { message: "PROTOCOL INTERRUPTED: RETRY COMMAND" }
+            }]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (error) {
+        return (
+            <div className="flex flex-col items-center justify-center h-[400px] text-amber-500 font-black uppercase text-[10px] tracking-widest gap-4">
+                <FiAlertTriangle size={32} />
+                <p>{error}</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex flex-col h-full bg-white dark:bg-[#0a0a0b] rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-premium font-sans">
+            {/* Neural Header */}
+            <div className="px-6 py-4 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                    <div className="relative">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full absolute -top-0.5 -right-0.5 animate-pulse" />
+                        <FiCpu className="text-indigo-500" size={20} />
+                    </div>
+                    <div>
+                        <span className="block text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Neural Intelligence Hub</span>
+                        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-tighter">Live Diagnostic Active</span>
+                    </div>
+                </div>
+            </div>
+
+            {/* Diagnostic Logs (Messages) */}
+            <div
+                ref={scrollRef}
+                className="flex-1 overflow-y-auto p-6 space-y-8 scrollbar-hide bg-white dark:bg-[#0a0a0b]"
+            >
+                {messages.map((msg, idx) => (
+                    <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`max-w-[85%] ${msg.role === 'user'
+                            ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-3xl rounded-tr-none shadow-xl'
+                            : 'bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl rounded-tl-none'} p-6`}>
+
+                            {msg.role === 'ai' ? (
+                                <div className="space-y-6">
+                                    <div className="flex items-center gap-2">
+                                        <FiActivity className="text-indigo-500" size={12} />
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                                            {msg.content.isAi ? 'Validated Insight' : 'System Protocol'}
+                                        </span>
+                                    </div>
+
+                                    {msg.content.message && (
+                                        <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-medium">{msg.content.message}</p>
+                                    )}
+
+                                    {msg.content.videoUrl && (
+                                        <div className="bg-white dark:bg-slate-950 rounded-[2rem] p-6 border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
+                                            <h4 className="text-[10px] font-black text-indigo-500 mb-4 flex items-center gap-2 uppercase tracking-[0.2em]">
+                                                <FiActivity /> Neural Broadcast
+                                            </h4>
+                                            <div className="aspect-video w-full rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
+                                                <iframe
+                                                    src={msg.content.videoUrl}
+                                                    title={`${exerciseName} Protocol`}
+                                                    className="w-full h-full"
+                                                    allowFullScreen
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                ></iframe>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {(msg.content.steps || msg.content.mistakes) && (
+                                        <div className="grid grid-cols-1 gap-4 mt-6">
+                                            {msg.content.steps && msg.content.steps.length > 0 && (
+                                                <div className="bg-white dark:bg-slate-950 rounded-2xl p-5 border border-slate-100 dark:border-slate-800 shadow-sm">
+                                                    <h4 className="text-[10px] font-black text-emerald-500 mb-4 flex items-center gap-2 uppercase tracking-[0.2em]">
+                                                        <FiCheckCircle /> Optimal Execution
+                                                    </h4>
+                                                    <ul className="space-y-3">
+                                                        {msg.content.steps.map((s, i) => (
+                                                            <li key={i} className="text-[11px] text-slate-500 dark:text-slate-400 flex gap-3 font-bold uppercase tracking-tight">
+                                                                <span className="text-emerald-500 font-black">/</span> {s}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+
+                                            {msg.content.mistakes && msg.content.mistakes.length > 0 && (
+                                                <div className="bg-white dark:bg-slate-950 rounded-2xl p-5 border border-slate-100 dark:border-slate-800 shadow-sm">
+                                                    <h4 className="text-[10px] font-black text-amber-500 mb-4 flex items-center gap-2 uppercase tracking-[0.2em]">
+                                                        <FiAlertTriangle /> Critical Deviations
+                                                    </h4>
+                                                    <ul className="space-y-3">
+                                                        {msg.content.mistakes.map((m, i) => (
+                                                            <li key={i} className="text-[11px] text-slate-500 dark:text-slate-400 flex gap-3 font-bold uppercase tracking-tight">
+                                                                <span className="text-amber-500 font-black">!</span> {m}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex items-center gap-3">
+                                    <span className="text-sm font-bold tracking-tight">{msg.text}</span>
+                                    <FiUser className="opacity-40" />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ))}
+
+                {loading && (
+                    <div className="flex justify-start">
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-3xl rounded-tl-none p-6 flex gap-1.5 items-center">
+                            <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce" />
+                            <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce [animation-delay:0.2s]" />
+                            <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-bounce [animation-delay:0.4s]" />
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Neural Entry (Input) */}
+            <form onSubmit={handleSendMessage} className="p-6 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-800">
+                <div className="relative flex items-center">
+                    <input
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder={`ENTER INQUIRY RE: ${exerciseName.toUpperCase()}...`}
+                        className="w-full bg-white dark:bg-[#0a0a0b] border border-slate-200 dark:border-slate-800 rounded-2xl py-4 px-6 pr-16 outline-none focus:ring-1 focus:ring-indigo-500 transition-all text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white"
+                    />
+                    <button
+                        type="submit"
+                        disabled={loading || !input.trim()}
+                        className="absolute right-3 p-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl hover:opacity-90 disabled:opacity-30 transition-all outline-none"
+                    >
+                        <FiSend size={16} />
+                    </button>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default AiCoach;

@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= BASE ================= */
+@layer base {
+  :root {
+    --font-inter: 'Inter', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 dark:bg-[#0a0a0b] dark:text-slate-50 antialiased selection:bg-indigo-500/30;
+    font-family: var(--font-inter);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-[1.05];
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl lg:text-8xl;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+/* ================= COMPONENTS ================= */
+@layer components {
+
+  /* --- Buttons (Management Suite Style) --- */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-white transition-all duration-300 bg-slate-900 rounded-2xl hover:bg-slate-800 disabled:opacity-30 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 shadow-xl active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 transition-all duration-300 bg-white border border-slate-200 rounded-2xl hover:bg-slate-50 hover:text-slate-900 dark:bg-[#111214] dark:border-slate-800 dark:hover:bg-slate-800 dark:hover:text-white shadow-premium active:scale-[0.98];
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center px-8 py-4 text-[10px] font-black uppercase tracking-[0.2em] text-rose-600 transition-all duration-300 bg-rose-50 border border-rose-100 rounded-2xl hover:bg-rose-100 dark:bg-rose-900/10 dark:border-rose-900/20 shadow-premium active:scale-[0.98];
+  }
+
+  /* --- Unified Card System --- */
+  .card {
+    @apply p-8 bg-white border border-slate-200/50 shadow-premium rounded-[2.5rem] dark:bg-[#111214] dark:border-slate-800/50 transition-all duration-500;
+  }
+
+  .card-premium {
+    @apply card hover:shadow-2xl hover:border-slate-300 dark:hover:border-slate-700;
+  }
+
+  /* --- Registry Inputs --- */
+  .input-field {
+    @apply w-full px-6 py-4 text-[10px] font-black uppercase tracking-widest transition-all duration-300 border border-slate-200/60 rounded-2xl bg-slate-50/50 focus:outline-none focus:ring-1 focus:ring-slate-900 focus:bg-white dark:bg-[#0a0a0b] dark:border-slate-800 dark:text-white dark:focus:ring-white dark:focus:bg-slate-900 placeholder-slate-400;
+  }
+
+  /* --- High-Fidelity Badges --- */
+  .badge {
+    @apply inline-flex items-center px-3 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-[0.15em] border border-transparent;
+  }
+
+  .badge-primary {
+    @apply bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400 border-indigo-100 dark:border-indigo-900/30;
+  }
+
+  .badge-success {
+    @apply bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400 border-emerald-100 dark:border-emerald-900/30;
+  }
+
+  .badge-warning {
+    @apply bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400 border-amber-100 dark:border-amber-900/30;
+  }
+
+  /* --- Layout & Dividers --- */
+  .section-divider {
+    @apply h-[1px] w-full bg-slate-100 dark:bg-slate-800 my-16;
+  }
+}
+
+/* ================= UTILITIES ================= */
+@layer utilities {
+  .shadow-premium {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .shadow-premium {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-subtle {
+    @apply text-slate-400 dark:text-slate-500 font-bold uppercase tracking-tight;
+  }
+
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-2xl border border-white/20 shadow-2xl dark:bg-[#111214]/80 dark:border-white/5;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 dark:bg-slate-800 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700;
+}
+
+/* ================= TOAST OVERRIDES ================= */
+.toast-success {
+  @apply !bg-[#0a0a0b] !text-white !border-slate-800 !rounded-2xl !shadow-2xl !font-black !uppercase !tracking-widest !text-[10px];
+}
+
+.toast-error {
+  @apply !bg-[#0a0a0b] !text-amber-500 !border-amber-900/30 !rounded-2xl !shadow-2xl !font-black !uppercase !tracking-widest !text-[10px];
+}
+
+/* ================= GLOBAL ADJUSTMENTS ================= */
+* {
+  @apply transition-colors duration-200;
+}
+
+select {
+  @apply appearance-none;
+}

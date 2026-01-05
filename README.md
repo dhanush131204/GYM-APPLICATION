@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# Least-Action-Project
-=======
+
 # GYMVERSE - AI-Powered Fitness Application
 
 A full-stack MERN application that acts as an AI-powered virtual gym assistant with role-based access, workout/diet planning, gamification, and community features.
