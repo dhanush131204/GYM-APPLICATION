@@ -32,12 +32,12 @@ const FeaturesSection = () => {
     return (
         <section className="py-32 bg-white dark:bg-[#0a0a0b] font-sans">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="mb-24 max-w-3xl animate-fade-in">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-black uppercase tracking-widest rounded-lg mb-6">
+                <div className="mb-16 sm:mb-24 max-w-3xl animate-fade-in text-center md:text-left">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] sm:text-xs font-black uppercase tracking-widest rounded-lg mb-6 mx-auto md:mx-0">
                         System Architecture
                     </div>
-                    <h2 className="mb-8">Precision-Engineered <br /> <span className="text-slate-400 dark:text-slate-500 text-3xl md:text-5xl">For Human Optimization.</span></h2>
-                    <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
+                    <h2 className="mb-8">Precision-Engineered <br /> <span className="text-slate-400 dark:text-slate-500 font-black">For Human Optimization.</span></h2>
+                    <p className="text-base sm:text-xl text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
                         We eliminated superficial metrics to focus on quantifiable physiological progression.
                         The OS combines verified sports science with enterprise-grade neural networks.
                     </p>

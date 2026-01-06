@@ -211,7 +211,7 @@ const TrainerDashboard = () => {
           <p className="text-base font-bold text-slate-500 dark:text-slate-400 mt-6 max-w-2xl leading-relaxed uppercase tracking-widest">Master authority portal for client synchronization and system architectural oversight.</p>
         </div>
 
-        <div className="flex space-x-3 bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-[2rem] border border-slate-200/50 dark:border-slate-800/50 shadow-inner">
+        <div className="w-full md:w-auto grid grid-cols-2 md:flex md:space-x-3 gap-3 md:gap-0 bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-[2rem] border border-slate-200/50 dark:border-slate-800/50 shadow-inner">
           {[
             { id: 'overview', icon: FiLayout, label: 'INSIGHTS' },
             { id: 'clients', icon: FiUsers, label: 'REGISTRY' },
@@ -221,12 +221,12 @@ const TrainerDashboard = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center px-10 py-5 rounded-[1.25rem] text-xs font-black uppercase tracking-[0.2em] transition-all ${activeTab === tab.id
+              className={`flex items-center justify-center md:justify-start px-4 py-4 md:px-10 md:py-5 rounded-[1.25rem] text-[10px] md:text-xs font-black uppercase tracking-widest transition-all ${activeTab === tab.id
                 ? 'bg-primary-600 text-white shadow-glow'
                 : 'text-slate-400 hover:text-primary-500 hover:bg-white dark:hover:bg-slate-800'
                 }`}
             >
-              <tab.icon className="mr-3 w-4 h-4" />
+              <tab.icon className="mr-2 md:mr-3 w-4 h-4" />
               {tab.label}
             </button>
           ))}

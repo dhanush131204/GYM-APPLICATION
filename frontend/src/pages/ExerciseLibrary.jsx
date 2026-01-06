@@ -4,6 +4,7 @@ import api, { BASE_URL } from '../utils/api';
 import Loading from '../components/common/Loading';
 import { Link } from 'react-router-dom';
 import { FiPlay, FiGrid, FiActivity } from 'react-icons/fi';
+import SafeImage from '../components/common/SafeImage';
 
 const ExerciseLibrary = () => {
     const [exercises, setExercises] = useState([]);
@@ -39,9 +40,9 @@ const ExerciseLibrary = () => {
     return (
         <div className="min-h-screen">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="text-center mb-20 animate-fade-in">
-                    <h1 className="text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter uppercase">Protocol <span className="text-primary-500">Repository.</span></h1>
-                    <p className="text-lg font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest max-w-2xl mx-auto leading-relaxed">
+                <div className="text-center mb-16 sm:mb-20 animate-fade-in">
+                    <h1 className="text-slate-900 dark:text-white mb-6 tracking-tighter uppercase">Protocol <span className="text-primary-500">Repository.</span></h1>
+                    <p className="text-base font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest max-w-2xl mx-auto leading-relaxed px-4">
                         Master your biological form through <span className="text-primary-600 dark:text-primary-400">neural video guidance</span> and synchronized AI coaching modules.
                     </p>
                 </div>
@@ -52,7 +53,7 @@ const ExerciseLibrary = () => {
                         <button
                             key={f}
                             onClick={() => setFilter(f)}
-                            className={`px-8 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap border shadow-sm ${filter === f
+                            className={`px-6 py-2.5 rounded-2xl text-[10px] sm:text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap border shadow-sm ${filter === f
                                 ? 'bg-primary-600 border-primary-500 text-white shadow-glow'
                                 : 'bg-white text-slate-400 hover:text-slate-900 dark:bg-[#111214] dark:text-slate-500 dark:hover:text-white border-slate-200 dark:border-slate-800'
                                 }`}
@@ -71,7 +72,7 @@ const ExerciseLibrary = () => {
                             className="group bg-white dark:bg-[#111214] rounded-[2.5rem] overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-primary-500/50 transition-all hover:shadow-premium-hover hover:-translate-y-2"
                         >
                             <div className="relative aspect-video bg-slate-100 dark:bg-slate-900 overflow-hidden">
-                                <img
+                                <SafeImage
                                     src={getMediaUrl(exercise.imageUrl || exercise.videoUrl)}
                                     alt={exercise.name}
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -97,7 +98,7 @@ const ExerciseLibrary = () => {
                                     <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{exercise.muscleGroup}</p>
                                 </div>
 
-                                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 line-clamp-2 mb-8 uppercase tracking-wide opacity-80 leading-relaxed">
+                                <p className="text-xs font-bold text-slate-500 dark:text-slate-400 line-clamp-2 mb-8 uppercase tracking-wide opacity-80 leading-relaxed">
                                     {exercise.description}
                                 </p>
 

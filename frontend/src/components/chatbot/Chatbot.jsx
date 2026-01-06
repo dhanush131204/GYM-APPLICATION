@@ -53,7 +53,7 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-80 sm:w-96 bg-white dark:bg-[#111214] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col h-[500px]"
+            className="mb-4 w-[calc(100vw-3rem)] sm:w-96 bg-white dark:bg-[#111214] rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col h-[70vh] sm:h-[500px] max-h-[600px]"
           >
             <div className="bg-slate-900 dark:bg-slate-950 p-4 flex justify-between items-center border-b border-slate-800">
               <div className="flex items-center gap-3">
@@ -75,8 +75,8 @@ const Chatbot = () => {
                 <div key={i} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
                   <div
                     className={`max-w-[85%] p-3 rounded-2xl text-sm leading-relaxed ${msg.isBot
-                        ? 'bg-white dark:bg-[#1A1B1E] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none'
-                        : 'bg-indigo-600 text-white rounded-tr-none shadow-md shadow-indigo-600/20'
+                      ? 'bg-white dark:bg-[#1A1B1E] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none'
+                      : 'bg-indigo-600 text-white rounded-tr-none shadow-md shadow-indigo-600/20'
                       }`}
                   >
                     {msg.text}
@@ -120,8 +120,8 @@ const Chatbot = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`group flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-105 ${isOpen
-            ? 'bg-slate-800 text-white rotate-90'
-            : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+          ? 'bg-slate-800 text-white rotate-90'
+          : 'bg-indigo-600 hover:bg-indigo-700 text-white'
           }`}
       >
         {isOpen ? <FiX size={24} /> : <FiMessageSquare size={24} className="group-hover:animate-pulse" />}

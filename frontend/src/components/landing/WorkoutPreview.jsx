@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import VideoModal from './VideoModal';
+import SafeImage from '../common/SafeImage';
 import { FiClock, FiActivity, FiArrowRight, FiPlayCircle } from 'react-icons/fi';
 
 const workouts = [
@@ -46,7 +47,7 @@ const WorkoutPreview = () => {
     return (
         <section className="py-24 bg-white dark:bg-[#0a0a0b] border-y border-slate-100 dark:border-slate-900/50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 sm:mb-16 gap-8 px-4 sm:px-0">
                     <div className="max-w-2xl">
                         <h2 className="mb-4 font-black">Curated Protocols.</h2>
                         <p className="text-slate-500 dark:text-slate-400">
@@ -55,20 +56,20 @@ const WorkoutPreview = () => {
                     </div>
                     <button
                         onClick={handleViewAll}
-                        className="group text-xs font-black text-slate-900 dark:text-white flex items-center gap-3 transition-all uppercase tracking-[0.2em] border-b-2 border-slate-900 dark:border-white pb-1 hover:gap-5"
+                        className="group text-[10px] sm:text-xs font-black text-slate-900 dark:text-white flex items-center gap-3 transition-all uppercase tracking-[0.2em] border-b-2 border-slate-900 dark:border-white pb-1 hover:gap-5"
                     >
                         Archive Repository <FiArrowRight />
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
                     {workouts.map((workout, index) => (
                         <div
                             key={index}
                             className="group relative bg-white dark:bg-[#111214] rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-premium transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
                         >
                             <div className="aspect-[16/10] overflow-hidden relative">
-                                <img
+                                <SafeImage
                                     src={workout.image}
                                     alt={workout.title}
                                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"

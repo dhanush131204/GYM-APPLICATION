@@ -29,14 +29,14 @@ const MembershipSection = () => {
             <div className="absolute inset-x-0 bottom-0 h-px bg-slate-200 dark:bg-slate-800/50" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center mb-20 animate-fade-in">
+                <div className="text-center mb-12 sm:mb-20 animate-fade-in">
                     <h2 className="mb-4">Tailored Performance Tiers.</h2>
-                    <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
+                    <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto px-4">
                         Choose the operating system that matches your ambition. No hidden fees, just pure results.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
                     {tiers.map((tier, index) => (
                         <div
                             key={index}
@@ -67,10 +67,10 @@ const MembershipSection = () => {
 
                             <div className="mb-8">
                                 <div className="flex items-baseline gap-1">
-                                    <span className={`text-5xl font-black ${tier.highlight ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
+                                    <span className={`text-3xl sm:text-4xl font-black ${tier.highlight ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
                                         ${tier.price}
                                     </span>
-                                    <span className={`text-lg font-bold ${tier.highlight ? 'text-slate-500' : 'text-slate-400'}`}>
+                                    <span className={`text-base sm:text-lg font-bold ${tier.highlight ? 'text-slate-500' : 'text-slate-400'}`}>
                                         /mo
                                     </span>
                                 </div>

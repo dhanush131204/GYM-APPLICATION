@@ -8,9 +8,10 @@
     --font-sans: 'Inter', 'Outfit', system-ui, sans-serif;
   }
 
-  /* Fluid typography: scales between mobile and desktop for rem-based sizes */
+  /* Fluid typography: scales between mobile and desktop */
   html {
-    font-size: clamp(14px, 1.2vw + 12px, 18px);
+    /* 14px at 320px -> 18px at 1440px */
+    font-size: clamp(14px, 0.4vw + 12.7px, 18px);
   }
 
   body {
@@ -29,19 +30,25 @@
   }
 
   h1 {
-    @apply text-xl sm:text-3xl md:text-6xl lg:text-7xl;
+    /* Fluid scaling: 1.75rem at 320px -> 3.5rem at 1440px */
+    font-size: clamp(1.75rem, 5vw + 0.5rem, 3.5rem);
+    @apply leading-[1.1] md:leading-[1];
   }
 
   h2 {
-    @apply text-3xl md:text-5xl lg:text-6xl;
+    /* Fluid scaling: 1.5rem at 320px -> 2.75rem at 1440px */
+    font-size: clamp(1.5rem, 4vw + 0.5rem, 2.75rem);
+    @apply leading-[1.2] md:leading-[1.1];
   }
 
   h3 {
-    @apply text-2xl md:text-4xl;
+    /* Fluid scaling: 1.25rem at 320px -> 2.25rem at 1440px */
+    font-size: clamp(1.25rem, 3vw + 0.5rem, 2.25rem);
   }
 
   h4 {
-    @apply text-xl md:text-2xl;
+    /* Fluid scaling: 1.1rem at 320px -> 1.75rem at 1440px */
+    font-size: clamp(1.1rem, 2vw + 0.5rem, 1.75rem);
   }
 
   p {

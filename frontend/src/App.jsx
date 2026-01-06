@@ -123,10 +123,10 @@ const AppRoutes = () => {
 
 function App() {
   return (
-    <ErrorBoundary>
-      <ThemeProvider>
-        <AuthProvider>
-          <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <ErrorBoundary>
             <div className="min-h-screen flex flex-col">
               <Navbar />
               <main className="flex-grow">
@@ -169,10 +169,10 @@ function App() {
                 }}
               />
             </div>
-          </Router>
-        </AuthProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+          </ErrorBoundary>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

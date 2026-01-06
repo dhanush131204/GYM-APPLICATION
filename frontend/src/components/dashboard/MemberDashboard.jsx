@@ -42,11 +42,11 @@ const MemberDashboard = () => {
   ];
 
   const StatCard = ({ title, value, subtext, icon: Icon, accentColor }) => (
-    <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-[2rem] p-10 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transition-all duration-300 group">
+    <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-[2rem] p-6 sm:p-10 shadow-premium hover:shadow-premium-hover hover:-translate-y-1 transition-all duration-300 group">
       <div className="flex justify-between items-start">
         <div>
           <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">{title}</p>
-          <h3 className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter mb-3">{value}</h3>
+          <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tighter mb-3">{value}</h3>
           {subtext && <p className="text-xs font-bold text-primary-500/80 uppercase tracking-widest">{subtext}</p>}
         </div>
         <div className={`p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 transition-all group-hover:scale-110 shadow-sm ${accentColor}`}>
@@ -64,17 +64,17 @@ const MemberDashboard = () => {
           <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 text-xs font-black uppercase tracking-[0.2em] rounded-full mb-8 shadow-glow border border-primary-100 dark:border-primary-800/50">
             <FiZap className="animate-pulse" /> Performance Matrix Synchronized
           </div>
-          <h1 className="text-6xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">Command <span className="text-primary-500">Center.</span></h1>
+          <h1 className="text-slate-900 dark:text-white uppercase tracking-tighter">Command <span className="text-primary-500">Center.</span></h1>
           <p className="text-base font-bold text-slate-500 dark:text-slate-400 mt-6 max-w-2xl leading-relaxed uppercase tracking-widest">
             {stats?.attendanceStreak > 0
               ? `Operational efficiency optimized | ${stats.attendanceStreak}-Cycle continuous synchronization.`
               : "Neural link established. Awaiting protocol activation from dispatch."}
           </p>
         </div>
-        <div className="flex gap-12">
+        <div className="flex gap-6 sm:gap-12">
           <div className="text-right">
             <p className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-3">Global Ranking</p>
-            <p className="text-5xl font-black text-slate-900 dark:text-white tracking-tighter tabular-nums text-primary-500">#1,204</p>
+            <p className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tighter tabular-nums text-primary-500">#1,204</p>
           </div>
         </div>
       </div>
@@ -141,7 +141,7 @@ const MemberDashboard = () => {
                   fontWeight="900"
                   tickLine={false}
                   axisLine={false}
-                  dy={15}
+                  dy={10}
                   tick={{ fill: '#94a3b8', letterSpacing: '0.1em' }}
                 />
                 <YAxis hide />
@@ -170,7 +170,7 @@ const MemberDashboard = () => {
             <div>
               <div className="flex justify-between items-end mb-4">
                 <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em]">BMI Architecture</p>
-                <p className="text-3xl font-black text-primary-500 tabular-nums">{stats?.bmi || '22.4'}</p>
+                <p className="text-2xl sm:text-3xl font-black text-primary-500 tabular-nums">{stats?.bmi || '22.4'}</p>
               </div>
               <div className="h-3 bg-slate-100 dark:bg-slate-900 rounded-full overflow-hidden border border-slate-200 dark:border-slate-800">
                 <div className="h-full bg-primary-600 transition-all duration-1500 shadow-glow" style={{ width: `${Math.min((stats?.bmi || 22.4) * 2.5, 100)}%` }} />
@@ -180,11 +180,11 @@ const MemberDashboard = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-100 dark:border-slate-800/50 shadow-inner">
                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3 italic">Mass</p>
-                <p className="text-2xl font-black text-slate-900 dark:text-white tabular-nums">{stats?.weight || '78'}<span className="text-xs ml-1 opacity-40 uppercase font-bold">kg</span></p>
+                <p className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tabular-nums">{stats?.weight || '78'}<span className="text-xs ml-1 opacity-40 uppercase font-bold">kg</span></p>
               </div>
               <div className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-100 dark:border-slate-800/50 shadow-inner">
                 <p className="text-xs font-black text-secondary-500 uppercase tracking-widest mb-3 italic">Cycles</p>
-                <p className="text-2xl font-black text-slate-900 dark:text-white tabular-nums">{stats?.completedWorkouts || 12}</p>
+                <p className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tabular-nums">{stats?.completedWorkouts || 12}</p>
               </div>
             </div>
           </div>

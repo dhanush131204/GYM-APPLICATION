@@ -49,10 +49,12 @@ const BMICalculator = () => {
                         </div>
                     </div>
 
-                    <div className="card-premium p-10 lg:p-12 relative overflow-hidden">
+                    <div className="card-premium p-6 sm:p-10 lg:p-12 relative overflow-hidden">
                         <div className="absolute top-0 right-0 p-8 opacity-5 dark:opacity-10">
                             <FiInfo size={120} />
                         </div>
+
+
 
                         <div className="grid gap-12 mb-12">
                             <div>
@@ -88,7 +90,7 @@ const BMICalculator = () => {
 
                         <div className="bg-slate-50 dark:bg-[#0a0a0b] rounded-[2rem] p-10 text-center border border-slate-100 dark:border-slate-800/60 shadow-inner">
                             <p className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-4">Calculated BMI</p>
-                            <p className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter mb-6">{bmi}</p>
+                            <p className="text-4xl xs:text-5xl sm:text-7xl font-black text-slate-900 dark:text-white tracking-tighter mb-6">{bmi}</p>
 
                             <div className={`badge ${status.bg.replace('bg-', 'bg-').replace('500', '100').replace('600', '100')} ${status.color}`}>
                                 {status.label}
