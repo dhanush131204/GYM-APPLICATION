@@ -4,5 +4,10 @@ backend/build/
 
 
 frontend/.env
+<<<<<<< HEAD
 frontend/node_modules/
 frontend/dist/assets/
+=======
+frontend/node_modules
+frontend/dist/
+>>>>>>> 21c12216b061cc1778e75fde4aa3c59424007158
