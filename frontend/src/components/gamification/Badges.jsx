@@ -16,6 +16,7 @@ const Badges = () => {
     try {
       const response = await api.get('/gamification/badges');
       setBadges(response.data.badges || []);
+    
     } catch (error) {
       toast.error('Protocol synchronization failed');
     } finally {
