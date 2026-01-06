@@ -33,12 +33,13 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0a0a0b] p-4">
       <div className="w-full max-w-md">
 
-        <div className="text-center mb-8">
-          <Link to="/" className="inline-block text-3xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">
-            GYMVERSE
+        <div className="text-center mb-12">
+          <Link to="/" className="inline-block text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter hover:scale-105 transition-transform">
+            GYM<span className="text-primary-500">VERSE</span>
           </Link>
-          <p className="text-slate-600 dark:text-slate-400">
-            Sign in to your specialized training dashboard.
+          <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-relaxed">
+            Secure Terminal Access <br />
+            <span className="text-xs opacity-60">ENCRYPTION ACTIVE</span>
           </p>
         </div>
 
@@ -46,10 +47,10 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
 
             <div>
-              <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <FiMail />
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Identity Credentials</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
+                  <FiMail size={18} />
                 </div>
                 <input
                   name="email"
@@ -58,16 +59,16 @@ const Login = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white transition-all"
+                  className="w-full pl-14 pr-5 py-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:text-white transition-all font-sans text-sm font-bold"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Password</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <FiLock />
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Access Key</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
+                  <FiLock size={18} />
                 </div>
                 <input
                   name="password"
@@ -76,14 +77,14 @@ const Login = () => {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-10 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white transition-all"
+                  className="w-full pl-14 pr-12 py-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:text-white transition-all font-sans text-sm font-bold"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 focus:outline-none"
+                  className="absolute inset-y-0 right-0 pr-5 flex items-center text-slate-400 hover:text-primary-500 transition-colors focus:outline-none"
                 >
-                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                  {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
                 </button>
               </div>
             </div>

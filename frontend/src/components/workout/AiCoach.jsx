@@ -57,7 +57,7 @@ const AiCoach = ({ exerciseName }) => {
 
     if (error) {
         return (
-            <div className="flex flex-col items-center justify-center h-[400px] text-amber-500 font-black uppercase text-[10px] tracking-widest gap-4">
+            <div className="flex flex-col items-center justify-center h-[400px] text-amber-500 font-black uppercase text-xs tracking-widest gap-4">
                 <FiAlertTriangle size={32} />
                 <p>{error}</p>
             </div>
@@ -67,15 +67,15 @@ const AiCoach = ({ exerciseName }) => {
     return (
         <div className="flex flex-col h-full bg-white dark:bg-[#0a0a0b] rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-premium font-sans">
             {/* Neural Header */}
-            <div className="px-6 py-4 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-3">
+            <div className="px-8 py-5 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <div className="flex items-center gap-4">
                     <div className="relative">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full absolute -top-0.5 -right-0.5 animate-pulse" />
-                        <FiCpu className="text-indigo-500" size={20} />
+                        <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full absolute -top-0.5 -right-0.5 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                        <FiCpu className="text-primary-500" size={24} />
                     </div>
                     <div>
-                        <span className="block text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Neural Intelligence Hub</span>
-                        <span className="text-[8px] font-bold text-slate-400 uppercase tracking-tighter">Live Diagnostic Active</span>
+                        <span className="block text-xs font-black text-slate-900 dark:text-white uppercase tracking-[0.2em]">Neural Intelligence Hub</span>
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Live Diagnostic Active</span>
                     </div>
                 </div>
             </div>
@@ -93,23 +93,23 @@ const AiCoach = ({ exerciseName }) => {
 
                             {msg.role === 'ai' ? (
                                 <div className="space-y-6">
-                                    <div className="flex items-center gap-2">
-                                        <FiActivity className="text-indigo-500" size={12} />
-                                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                                    <div className="flex items-center gap-3">
+                                        <FiActivity className="text-primary-500" size={14} />
+                                        <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
                                             {msg.content.isAi ? 'Validated Insight' : 'System Protocol'}
                                         </span>
                                     </div>
 
                                     {msg.content.message && (
-                                        <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-medium">{msg.content.message}</p>
+                                        <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-bold uppercase tracking-wide">{msg.content.message}</p>
                                     )}
 
                                     {msg.content.videoUrl && (
-                                        <div className="bg-white dark:bg-slate-950 rounded-[2rem] p-6 border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
-                                            <h4 className="text-[10px] font-black text-indigo-500 mb-4 flex items-center gap-2 uppercase tracking-[0.2em]">
-                                                <FiActivity /> Neural Broadcast
+                                        <div className="bg-white dark:bg-slate-950 rounded-[2rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
+                                            <h4 className="text-xs font-black text-primary-500 mb-6 flex items-center gap-3 uppercase tracking-[0.3em]">
+                                                <FiActivity size={16} /> Neural Broadcast
                                             </h4>
-                                            <div className="aspect-video w-full rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-center">
+                                            <div className="aspect-video w-full rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-center shadow-inner">
                                                 <iframe
                                                     src={msg.content.videoUrl}
                                                     title={`${exerciseName} Protocol`}
@@ -122,16 +122,16 @@ const AiCoach = ({ exerciseName }) => {
                                     )}
 
                                     {(msg.content.steps || msg.content.mistakes) && (
-                                        <div className="grid grid-cols-1 gap-4 mt-6">
+                                        <div className="grid grid-cols-1 gap-6 mt-8">
                                             {msg.content.steps && msg.content.steps.length > 0 && (
-                                                <div className="bg-white dark:bg-slate-950 rounded-2xl p-5 border border-slate-100 dark:border-slate-800 shadow-sm">
-                                                    <h4 className="text-[10px] font-black text-emerald-500 mb-4 flex items-center gap-2 uppercase tracking-[0.2em]">
-                                                        <FiCheckCircle /> Optimal Execution
+                                                <div className="bg-white dark:bg-slate-950 rounded-[1.5rem] p-6 border border-slate-100 dark:border-slate-800 shadow-sm">
+                                                    <h4 className="text-xs font-black text-emerald-500 mb-4 flex items-center gap-3 uppercase tracking-[0.3em]">
+                                                        <FiCheckCircle size={14} /> Optimal Execution
                                                     </h4>
-                                                    <ul className="space-y-3">
+                                                    <ul className="space-y-4">
                                                         {msg.content.steps.map((s, i) => (
-                                                            <li key={i} className="text-[11px] text-slate-500 dark:text-slate-400 flex gap-3 font-bold uppercase tracking-tight">
-                                                                <span className="text-emerald-500 font-black">/</span> {s}
+                                                            <li key={i} className="text-xs text-slate-500 dark:text-slate-400 flex gap-4 font-black uppercase tracking-widest leading-relaxed">
+                                                                <span className="text-emerald-500">/</span> {s}
                                                             </li>
                                                         ))}
                                                     </ul>
@@ -139,14 +139,14 @@ const AiCoach = ({ exerciseName }) => {
                                             )}
 
                                             {msg.content.mistakes && msg.content.mistakes.length > 0 && (
-                                                <div className="bg-white dark:bg-slate-950 rounded-2xl p-5 border border-slate-100 dark:border-slate-800 shadow-sm">
-                                                    <h4 className="text-[10px] font-black text-amber-500 mb-4 flex items-center gap-2 uppercase tracking-[0.2em]">
-                                                        <FiAlertTriangle /> Critical Deviations
+                                                <div className="bg-white dark:bg-slate-950 rounded-[1.5rem] p-6 border border-slate-100 dark:border-slate-800 shadow-sm">
+                                                    <h4 className="text-xs font-black text-primary-500 mb-4 flex items-center gap-3 uppercase tracking-[0.3em]">
+                                                        <FiAlertTriangle size={14} /> Critical Deviations
                                                     </h4>
-                                                    <ul className="space-y-3">
+                                                    <ul className="space-y-4">
                                                         {msg.content.mistakes.map((m, i) => (
-                                                            <li key={i} className="text-[11px] text-slate-500 dark:text-slate-400 flex gap-3 font-bold uppercase tracking-tight">
-                                                                <span className="text-amber-500 font-black">!</span> {m}
+                                                            <li key={i} className="text-xs text-slate-500 dark:text-slate-400 flex gap-4 font-black uppercase tracking-widest leading-relaxed">
+                                                                <span className="text-primary-500">!</span> {m}
                                                             </li>
                                                         ))}
                                                     </ul>
@@ -156,9 +156,9 @@ const AiCoach = ({ exerciseName }) => {
                                     )}
                                 </div>
                             ) : (
-                                <div className="flex items-center gap-3">
-                                    <span className="text-sm font-bold tracking-tight">{msg.text}</span>
-                                    <FiUser className="opacity-40" />
+                                <div className="flex items-center gap-4">
+                                    <span className="text-xs font-black uppercase tracking-[0.2em]">{msg.text}</span>
+                                    <FiUser className="opacity-40" size={16} />
                                 </div>
                             )}
                         </div>
@@ -184,14 +184,14 @@ const AiCoach = ({ exerciseName }) => {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder={`ENTER INQUIRY RE: ${exerciseName.toUpperCase()}...`}
-                        className="w-full bg-white dark:bg-[#0a0a0b] border border-slate-200 dark:border-slate-800 rounded-2xl py-4 px-6 pr-16 outline-none focus:ring-1 focus:ring-indigo-500 transition-all text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white"
+                        className="w-full bg-white dark:bg-[#0a0a0b] border border-slate-200 dark:border-slate-800 rounded-2xl py-5 px-8 pr-20 outline-none focus:ring-2 focus:ring-primary-500/50 transition-all text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-700"
                     />
                     <button
                         type="submit"
                         disabled={loading || !input.trim()}
-                        className="absolute right-3 p-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl hover:opacity-90 disabled:opacity-30 transition-all outline-none"
+                        className="absolute right-4 p-4 bg-primary-600 dark:bg-primary-500 text-white rounded-xl hover:shadow-glow disabled:opacity-30 transition-all outline-none"
                     >
-                        <FiSend size={16} />
+                        <FiSend size={18} />
                     </button>
                 </div>
             </form>

@@ -41,12 +41,12 @@ const MembershipSection = () => {
                         <div
                             key={index}
                             className={`relative p-8 md:p-12 rounded-3xl border transition-all duration-300 ${tier.highlight
-                                    ? 'bg-slate-900 border-slate-800 shadow-2xl scale-105 z-10'
-                                    : 'bg-white dark:bg-[#111214] border-slate-200 dark:border-slate-800'
+                                ? 'bg-slate-900 border-slate-800 shadow-2xl md:scale-105 z-10'
+                                : 'bg-white dark:bg-[#111214] border-slate-200 dark:border-slate-800'
                                 }`}
                         >
                             {tier.highlight && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-500 text-white text-[10px] font-bold uppercase tracking-widest rounded-full">
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-500 text-white text-xs font-bold uppercase tracking-widest rounded-full">
                                     Recommended
                                 </div>
                             )}
@@ -93,8 +93,8 @@ const MembershipSection = () => {
                             </div>
 
                             <button className={`w-full py-4 rounded-2xl font-black transition-all ${tier.highlight
-                                    ? 'bg-white text-slate-900 hover:bg-slate-100 shadow-lg shadow-white/5'
-                                    : 'bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700'
+                                ? 'bg-white text-slate-900 hover:bg-slate-100 shadow-lg shadow-white/5'
+                                : 'bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700'
                                 }`}>
                                 {tier.btnText}
                             </button>

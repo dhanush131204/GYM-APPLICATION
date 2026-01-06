@@ -49,12 +49,13 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0a0a0b] p-4">
       <div className="w-full max-w-md">
 
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">
-            Create Account
+        <div className="text-center mb-12">
+          <h2 className="text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter">
+            Initialize <span className="text-primary-500">Access.</span>
           </h2>
-          <p className="text-slate-600 dark:text-slate-400">
-            Join the elite community of data-driven athletes.
+          <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-relaxed">
+            Join the elite community of <br />
+            data-driven athletes globally.
           </p>
         </div>
 
@@ -63,17 +64,17 @@ const Register = () => {
 
             {/* Name */}
             <div>
-              <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Full Name</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <FiUser />
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Official Designation</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
+                  <FiUser size={18} />
                 </div>
                 <input
                   name="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Full Legal Name"
                   required
-                  className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white transition-all"
+                  className="w-full pl-14 pr-5 py-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:text-white transition-all font-sans text-sm font-bold"
                   value={formData.name}
                   onChange={handleChange}
                 />
@@ -82,17 +83,17 @@ const Register = () => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <FiMail />
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Communication Node</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
+                  <FiMail size={18} />
                 </div>
                 <input
                   name="email"
                   type="email"
-                  placeholder="name@example.com"
+                  placeholder="verified@example.com"
                   required
-                  className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white transition-all"
+                  className="w-full pl-14 pr-5 py-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:text-white transition-all font-sans text-sm font-bold"
                   value={formData.email}
                   onChange={handleChange}
                 />
@@ -101,45 +102,45 @@ const Register = () => {
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Password</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                  <FiLock />
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Access Keyphrase</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
+                  <FiLock size={18} />
                 </div>
                 <input
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••"
                   required
-                  className="w-full pl-10 pr-10 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white transition-all"
+                  className="w-full pl-14 pr-12 py-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:text-white transition-all font-sans text-sm font-bold"
                   value={formData.password}
                   onChange={handleChange}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 focus:outline-none"
+                  className="absolute inset-y-0 right-0 pr-5 flex items-center text-slate-400 hover:text-primary-500 transition-colors focus:outline-none"
                 >
-                  {showPassword ? <FiEyeOff /> : <FiEye />}
+                  {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
                 </button>
               </div>
             </div>
 
             {/* Role */}
             <div>
-              <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Account Type</label>
-              <div className="relative">
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Operational Role</label>
+              <div className="relative group">
                 <select
                   name="role"
-                  className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white transition-all appearance-none"
+                  className="w-full px-5 py-4 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:text-white transition-all appearance-none font-sans text-sm font-bold uppercase tracking-widest cursor-pointer group-hover:bg-slate-100 dark:group-hover:bg-slate-800 transition-colors"
                   value={formData.role}
                   onChange={handleChange}
                 >
-                  <option value="member">I'm a Member</option>
-                  <option value="trainer">I'm a Trainer</option>
+                  <option value="member">Athlete Protocol</option>
+                  <option value="trainer">Architecture Lead</option>
                 </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div className="absolute inset-y-0 right-0 flex items-center px-5 pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
               </div>
             </div>

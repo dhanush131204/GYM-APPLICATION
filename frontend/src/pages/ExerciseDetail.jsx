@@ -91,27 +91,27 @@ const ExerciseDetail = () => {
                         <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                                 <div>
-                                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{exercise.name}</h1>
-                                    <div className="flex items-center gap-2">
-                                        <span className="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                                    <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-3 uppercase tracking-tighter">{exercise.name}</h1>
+                                    <div className="flex items-center gap-3">
+                                        <span className="px-3 py-1 rounded-lg text-xs font-black uppercase tracking-widest bg-primary-50 text-primary-600 dark:bg-primary-900/20">
                                             {exercise.muscleGroup}
                                         </span>
-                                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold uppercase ${exercise.difficulty === 'Beginner' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
+                                        <span className={`px-3 py-1 rounded-lg text-xs font-black uppercase tracking-widest ${exercise.difficulty === 'Beginner' ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20' : 'bg-primary-50 text-primary-600 dark:bg-primary-900/20'
                                             }`}>
                                             {exercise.difficulty}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="flex p-1 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                                <div className="flex p-1.5 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-100 dark:border-slate-800">
                                     <button
                                         onClick={() => setActiveTab('guide')}
-                                        className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'guide' ? 'bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700'}`}
+                                        className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'guide' ? 'bg-white dark:bg-slate-800 shadow-sm text-primary-600 dark:text-primary-400' : 'text-slate-400 hover:text-slate-600'}`}
                                     >
                                         Step Guide
                                     </button>
                                     <button
                                         onClick={() => setActiveTab('ai')}
-                                        className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'ai' ? 'bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700'}`}
+                                        className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'ai' ? 'bg-white dark:bg-slate-800 shadow-sm text-primary-600 dark:text-primary-400' : 'text-slate-400 hover:text-slate-600'}`}
                                     >
                                         AI Coach
                                     </button>
@@ -119,40 +119,40 @@ const ExerciseDetail = () => {
                             </div>
 
                             {activeTab === 'guide' ? (
-                                <div className="space-y-8 animate-fade-in">
+                                <div className="space-y-10 animate-fade-in font-sans">
                                     <div>
-                                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                                            <span className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center text-sm">1</span>
-                                            Execution
+                                        <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 flex items-center justify-center text-xs border border-primary-100 dark:border-primary-800/50">01</div>
+                                            Execution Protocol
                                         </h3>
-                                        <ol className="space-y-3 pl-4 border-l-2 border-slate-100 dark:border-slate-800 ml-3">
+                                        <ol className="space-y-6 pl-6 border-l-2 border-slate-100 dark:border-slate-800 ml-5">
                                             {exercise.steps.map((step, i) => (
-                                                <li key={i} className="text-slate-600 dark:text-slate-300 pl-4 relative">
-                                                    <span className="absolute -left-[21px] top-1.5 w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-700"></span>
+                                                <li key={i} className="text-sm font-bold text-slate-600 dark:text-slate-300 pl-6 relative leading-relaxed uppercase tracking-wide">
+                                                    <span className="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-primary-500 border-4 border-white dark:border-[#111214]"></span>
                                                     {step}
                                                 </li>
                                             ))}
                                         </ol>
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div className="bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/20 rounded-xl p-5">
-                                            <h3 className="text-sm font-bold text-amber-900 dark:text-amber-500 mb-3 flex items-center gap-2">
-                                                <FiAlertCircle /> Common Mistakes
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="bg-primary-50 dark:bg-primary-900/10 border border-primary-100 dark:border-primary-900/20 rounded-[1.5rem] p-6 shadow-sm">
+                                            <h3 className="text-xs font-black text-primary-600 dark:text-primary-400 mb-4 flex items-center gap-3 uppercase tracking-widest">
+                                                <FiAlertCircle size={14} /> Deviation Alerts
                                             </h3>
-                                            <ul className="space-y-2">
+                                            <ul className="space-y-3">
                                                 {exercise.commonMistakes.map((m, i) => (
-                                                    <li key={i} className="text-sm text-amber-800 dark:text-amber-400/90 flex items-start gap-2">
-                                                        <span>•</span> {m}
+                                                    <li key={i} className="text-xs font-bold text-primary-800 dark:text-primary-300/80 flex items-start gap-3 leading-relaxed">
+                                                        <span className="w-1 h-1 rounded-full bg-primary-500 mt-1.5 flex-shrink-0" /> {m}
                                                     </li>
                                                 ))}
                                             </ul>
                                         </div>
-                                        <div className="bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-900/20 rounded-xl p-5">
-                                            <h3 className="text-sm font-bold text-emerald-900 dark:text-emerald-500 mb-3 flex items-center gap-2">
-                                                <FiActivity /> Breathing
+                                        <div className="bg-secondary-50 dark:bg-secondary-900/10 border border-secondary-100 dark:border-secondary-900/20 rounded-[1.5rem] p-6 shadow-sm">
+                                            <h3 className="text-xs font-black text-secondary-600 dark:text-secondary-400 mb-4 flex items-center gap-3 uppercase tracking-widest">
+                                                <FiActivity size={14} /> Pulmonary Sync
                                             </h3>
-                                            <p className="text-sm text-emerald-800 dark:text-emerald-400/90">
+                                            <p className="text-xs font-bold text-secondary-800 dark:text-secondary-300/80 uppercase tracking-wide leading-relaxed">
                                                 {exercise.breathing}
                                             </p>
                                         </div>
@@ -166,12 +166,13 @@ const ExerciseDetail = () => {
 
                     {/* Right Column: Timer & Stats */}
                     <div className="lg:col-span-1 space-y-6">
-                        <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 sticky top-6">
-                            <div className="text-center mb-8">
-                                <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Smart Timer</div>
-                                <div className="text-6xl font-black text-slate-900 dark:text-white font-mono tracking-tighter">
+                        <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 sm:p-10 sticky top-12 shadow-premium">
+                            <div className="text-center mb-10">
+                                <div className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-4">Neural Timer</div>
+                                <div className="text-7xl font-black text-slate-900 dark:text-white font-mono tracking-tighter tabular-nums mb-2">
                                     {formatTime(timer)}
                                 </div>
+                                <div className="h-1 w-20 bg-primary-500 mx-auto rounded-full opacity-30" />
                             </div>
 
                             {!isTimerRunning ? (

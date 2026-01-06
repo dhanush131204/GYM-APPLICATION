@@ -55,7 +55,7 @@ const WorkoutPreview = () => {
                     </div>
                     <button
                         onClick={handleViewAll}
-                        className="group text-[10px] font-black text-slate-900 dark:text-white flex items-center gap-3 transition-all uppercase tracking-[0.2em] border-b-2 border-slate-900 dark:border-white pb-1 hover:gap-5"
+                        className="group text-xs font-black text-slate-900 dark:text-white flex items-center gap-3 transition-all uppercase tracking-[0.2em] border-b-2 border-slate-900 dark:border-white pb-1 hover:gap-5"
                     >
                         Archive Repository <FiArrowRight />
                     </button>
@@ -89,13 +89,13 @@ const WorkoutPreview = () => {
                             <div className="p-8">
                                 <div className="flex justify-between items-start mb-6">
                                     <div>
-                                        <p className="text-[10px] font-black text-indigo-500 uppercase tracking-widest mb-2">{workout.tag}</p>
+                                        <p className="text-xs font-black text-indigo-500 uppercase tracking-widest mb-2">{workout.tag}</p>
                                         <h3 className="text-xl font-black text-slate-900 dark:text-white leading-tight">{workout.title}</h3>
                                     </div>
                                 </div>
 
                                 <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-slate-800/50">
-                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">{workout.level}</span>
+                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">{workout.level}</span>
                                     <button
                                         onClick={() => setSelectedVideo(workout)}
                                         className="text-xs font-black text-slate-900 dark:text-white hover:text-indigo-600 transition-colors flex items-center gap-2"

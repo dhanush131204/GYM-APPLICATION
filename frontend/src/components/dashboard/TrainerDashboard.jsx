@@ -33,15 +33,15 @@ const TrainerDashboard = () => {
   }
 
   const StatCard = ({ title, value, subtext, icon: Icon, accentColor }) => (
-    <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-premium transition-all hover:shadow-2xl font-sans">
+    <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-10 shadow-premium transition-all hover:shadow-glow hover:-translate-y-1 font-sans group">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">{title}</p>
-          <h3 className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter mb-2">{value}</h3>
-          {subtext && <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">{subtext}</p>}
+          <p className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-4">{title}</p>
+          <h3 className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter mb-4 tabular-nums">{value}</h3>
+          {subtext && <p className="text-xs font-black text-primary-500 uppercase tracking-[0.2em] italic">{subtext}</p>}
         </div>
-        <div className={`p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 ${accentColor}`}>
-          <Icon size={18} />
+        <div className={`p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 transition-all group-hover:scale-110 shadow-sm ${accentColor}`}>
+          <Icon size={28} />
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@ const TrainerDashboard = () => {
             value={members.length}
             subtext={`${activeClients} ACTIVE DEPLOYMENTS`}
             icon={FiUsers}
-            accentColor="text-indigo-500"
+            accentColor="text-primary-500"
           />
           <StatCard
             title="Fiscal Revenue"
@@ -102,16 +102,16 @@ const TrainerDashboard = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { id: 'plans', title: 'Plan Architect', desc: 'Engineer membership tiers', icon: FiDollarSign, color: 'indigo' },
-            { id: 'media', title: 'Content Forge', desc: 'Sync exercise libraries', icon: FiVideo, color: 'purple' },
-            { id: 'clients', title: 'User Index', desc: 'Managed client protocols', icon: FiUsers, color: 'emerald' },
+            { id: 'plans', title: 'Plan Architect', desc: 'Membership Tier Management', icon: FiDollarSign, color: 'primary' },
+            { id: 'media', title: 'Content Sync', desc: 'Exercise Repository Management', icon: FiVideo, color: 'secondary' },
+            { id: 'clients', title: 'User Index', desc: 'Protocol Lifecycle Tracking', icon: FiUsers, color: 'emerald' },
           ].map(action => (
-            <button key={action.id} onClick={() => setActiveTab(action.id)} className="group p-8 bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-3xl hover:border-slate-300 dark:hover:border-slate-700 transition-all text-left shadow-premium">
-              <div className={`w-14 h-14 bg-slate-50 dark:bg-slate-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                <action.icon size={22} className={`text-slate-600 dark:text-slate-300`} />
+            <button key={action.id} onClick={() => setActiveTab(action.id)} className="group p-10 bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-[2.5rem] hover:border-primary-500/50 transition-all text-left shadow-premium hover:shadow-premium-hover">
+              <div className={`w-16 h-16 bg-slate-50 dark:bg-slate-900 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-sm`}>
+                <action.icon size={28} className={`text-primary-500`} />
               </div>
-              <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">{action.title}</h3>
-              <p className="text-[10px] font-bold text-slate-400 uppercase mt-2 tracking-tighter">{action.desc}</p>
+              <h3 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-[0.15em]">{action.title}</h3>
+              <p className="text-xs font-bold text-slate-400 uppercase mt-3 tracking-widest leading-relaxed">{action.desc}</p>
             </button>
           ))}
         </div>
@@ -124,33 +124,33 @@ const TrainerDashboard = () => {
       <div className="p-8 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
         <div>
           <h3 className="text-lg font-black text-slate-900 dark:text-white">Active Deployments</h3>
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Personnel Management Index</p>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Personnel Management Index</p>
         </div>
         <div className="relative">
           <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
           <input
             type="text"
             placeholder="SEARCH REGISTRY..."
-            className="pl-12 pr-6 py-3 text-[10px] font-black uppercase tracking-widest border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-all w-64"
+            className="pl-12 pr-6 py-3 text-xs font-black uppercase tracking-widest border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-900 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-all w-64"
           />
         </div>
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full text-left">
-          <thead className="bg-slate-50/50 dark:bg-slate-900/30">
+          <thead className="bg-slate-50/50 dark:bg-slate-900/30 font-sans">
             <tr>
-              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Client Identity</th>
-              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">System Status</th>
-              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Tier</th>
-              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Activity Node</th>
-              <th className="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Ops</th>
+              <th className="px-10 py-6 text-xs font-black text-slate-400 uppercase tracking-widest">Client Identity</th>
+              <th className="px-10 py-6 text-xs font-black text-slate-400 uppercase tracking-widest">Status</th>
+              <th className="px-10 py-6 text-xs font-black text-slate-400 uppercase tracking-widest">Subscription Tier</th>
+              <th className="px-10 py-6 text-xs font-black text-slate-400 uppercase tracking-widest">Protocol Stats</th>
+              <th className="px-10 py-6 text-xs font-black text-slate-400 uppercase tracking-widest text-right">Channel</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
             {members.length === 0 ? (
               <tr>
-                <td colSpan="5" className="px-8 py-12 text-center text-slate-400 font-bold uppercase text-[10px] tracking-widest">Registry Empty / No Active Links</td>
+                <td colSpan="5" className="px-8 py-12 text-center text-slate-400 font-bold uppercase text-xs tracking-widest">Registry Empty / No Active Links</td>
               </tr>
             ) : (
               members.map((member) => (
@@ -162,7 +162,7 @@ const TrainerDashboard = () => {
                       </div>
                       <div>
                         <div className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">{member.name}</div>
-                        <div className="text-[10px] font-bold text-slate-400">{member.email}</div>
+                        <div className="text-xs font-bold text-slate-400">{member.email}</div>
                       </div>
                     </div>
                   </td>
@@ -202,31 +202,31 @@ const TrainerDashboard = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 font-sans">
       {/* Header Suite */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 border-b border-slate-100 dark:border-slate-800 pb-10">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-10 border-b border-slate-100 dark:border-slate-800 pb-12">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 text-[10px] font-black uppercase tracking-widest rounded-lg mb-4">
-            MGMT SUITE V2.4
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-500 text-xs font-black uppercase tracking-[0.3em] rounded-full mb-8 shadow-glow border border-primary-100 dark:border-primary-800/50">
+            <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse" /> EXECUTIVE MGMT SUITE
           </div>
-          <h1 className="font-black">Executive Operations.</h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-2">Oversee client progress and manage system architecture.</p>
+          <h1 className="text-3xl md:text-6xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">Executive <span className="text-primary-500">Operations.</span></h1>
+          <p className="text-base font-bold text-slate-500 dark:text-slate-400 mt-6 max-w-2xl leading-relaxed uppercase tracking-widest">Master authority portal for client synchronization and system architectural oversight.</p>
         </div>
 
-        <div className="flex space-x-2 bg-slate-50 dark:bg-slate-900/50 p-1.5 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
+        <div className="flex space-x-3 bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-[2rem] border border-slate-200/50 dark:border-slate-800/50 shadow-inner">
           {[
-            { id: 'overview', icon: FiLayout, label: 'OVERVIEW' },
+            { id: 'overview', icon: FiLayout, label: 'INSIGHTS' },
             { id: 'clients', icon: FiUsers, label: 'REGISTRY' },
-            { id: 'plans', icon: FiDollarSign, label: 'ARCHITECT' },
-            { id: 'media', icon: FiVideo, label: 'REPOSITORY' },
+            { id: 'plans', icon: FiDollarSign, label: 'TIERS' },
+            { id: 'media', icon: FiVideo, label: 'CONTENT' },
           ].map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab.id
-                ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xl'
-                : 'text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-slate-800'
+              className={`flex items-center px-10 py-5 rounded-[1.25rem] text-xs font-black uppercase tracking-[0.2em] transition-all ${activeTab === tab.id
+                ? 'bg-primary-600 text-white shadow-glow'
+                : 'text-slate-400 hover:text-primary-500 hover:bg-white dark:hover:bg-slate-800'
                 }`}
             >
-              <tab.icon className="mr-2 w-3.5 h-3.5" />
+              <tab.icon className="mr-3 w-4 h-4" />
               {tab.label}
             </button>
           ))}
@@ -264,11 +264,11 @@ const TrainerDashboard = () => {
 
             <div className="grid grid-cols-2 gap-6 mb-10">
               <div className="p-6 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Live Streak</p>
+                <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Live Streak</p>
                 <p className="text-3xl font-black text-slate-900 dark:text-white mt-1">{selectedClient.gamification?.attendanceStreak || 0} <span className="text-xs font-bold text-slate-400 uppercase">Days</span></p>
               </div>
               <div className="p-6 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-3xl">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Access Level</p>
+                <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Access Level</p>
                 <p className="text-3xl font-black text-slate-900 dark:text-white mt-1">{selectedClient.gamification?.level || 1}</p>
               </div>
             </div>
@@ -296,7 +296,7 @@ const TrainerDashboard = () => {
 
               <button
                 onClick={() => setSelectedClient(null)}
-                className="w-full py-5 text-[10px] font-black uppercase text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
+                className="w-full py-5 text-xs font-black uppercase text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
               >
                 TERMINATE INSPECTION
               </button>

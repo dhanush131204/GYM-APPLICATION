@@ -35,17 +35,17 @@ const PostCard = ({ post, onUpdate }) => {
     <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-premium hover:shadow-2xl transition-all duration-300 font-sans group">
       <div className="flex items-start justify-between mb-8">
         <div className="flex items-center gap-5">
-          <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-black text-slate-400 text-xl border border-slate-200/50 dark:border-slate-700/50">
+          <div className="w-16 h-16 rounded-2xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center font-black text-primary-500 text-2xl border border-primary-100 dark:border-primary-800/50 shadow-sm">
             {post.user?.name?.charAt(0).toUpperCase()}
           </div>
           <div>
-            <h4 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">{post.user?.name}</h4>
-            <div className="flex items-center gap-3 mt-1.5">
-              <span className="px-2 py-0.5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-500 text-[10px] font-black uppercase tracking-widest rounded-md">
+            <h4 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tighter">{post.user?.name}</h4>
+            <div className="flex items-center gap-4 mt-2">
+              <span className="px-3 py-1 bg-primary-50 dark:bg-primary-900/20 text-primary-500 text-xs font-black uppercase tracking-[0.2em] rounded-lg border border-primary-100 dark:border-primary-800/50">
                 {post.type?.replace('_', ' ') || 'General Protocol'}
               </span>
               <span className="w-1 h-1 bg-slate-300 dark:bg-slate-700 rounded-full" />
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-tighter">
                 {new Date(post.createdAt).toLocaleDateString()}
               </span>
             </div>
@@ -55,39 +55,39 @@ const PostCard = ({ post, onUpdate }) => {
         {(user?.id === post.user?._id || user?.role === 'admin') && (
           <button
             onClick={handleDelete}
-            className="p-3 text-slate-300 hover:text-rose-500 dark:hover:text-rose-400 transition-colors rounded-xl hover:bg-rose-50 dark:hover:bg-rose-900/10"
+            className="p-4 text-slate-300 hover:text-primary-500 transition-all rounded-2xl hover:bg-primary-50 dark:hover:bg-primary-900/20 border border-transparent hover:border-primary-100 dark:hover:border-primary-800/50"
           >
-            <FiTrash2 size={16} />
+            <FiTrash2 size={20} />
           </button>
         )}
       </div>
 
-      <div className="mb-10 pl-0 md:pl-16">
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed whitespace-pre-wrap font-medium">{post.content}</p>
+      <div className="mb-12 pl-0 md:pl-20">
+        <p className="text-slate-600 dark:text-slate-400 text-base leading-relaxed whitespace-pre-wrap font-bold uppercase tracking-wide italic">{post.content}</p>
       </div>
 
-      <div className="flex items-center gap-8 pl-0 md:pl-16">
+      <div className="flex items-center gap-10 pl-0 md:pl-20">
         <button
           onClick={handleLike}
-          className={`flex items-center gap-3 text-[10px] font-black uppercase tracking-widest transition-all ${liked
-            ? 'text-rose-500'
-            : 'text-slate-400 hover:text-rose-500'
+          className={`flex items-center gap-4 text-xs font-black uppercase tracking-[0.2em] transition-all ${liked
+            ? 'text-primary-500'
+            : 'text-slate-400 hover:text-primary-500'
             }`}
         >
-          <div className={`p-3 rounded-xl transition-all ${liked
-            ? 'bg-rose-50 dark:bg-rose-900/20 shadow-inner'
+          <div className={`p-4 rounded-2xl transition-all ${liked
+            ? 'bg-primary-50 dark:bg-primary-900/20 shadow-glow border border-primary-200 dark:border-primary-700'
             : 'bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800'
             }`}>
-            <FiHeart size={16} className={liked ? 'fill-current' : ''} />
+            <FiHeart size={20} className={liked ? 'fill-current' : ''} />
           </div>
-          <span>{likeCount} Endorsements</span>
+          <span>{likeCount} Synchronizations</span>
         </button>
 
-        <button className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-500 transition-all">
-          <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 group-hover:border-indigo-500/30">
-            <FiMessageSquare size={16} />
+        <button className="flex items-center gap-4 text-xs font-black uppercase tracking-[0.2em] text-slate-400 hover:text-secondary-500 transition-all">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 group-hover:border-secondary-500/30">
+            <FiMessageSquare size={20} />
           </div>
-          <span>{post.comments?.length || 0} Responses</span>
+          <span>{post.comments?.length || 0} Neural Links</span>
         </button>
       </div>
     </div>

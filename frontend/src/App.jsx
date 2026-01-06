@@ -133,7 +133,41 @@ function App() {
                 <AppRoutes />
               </main>
               <Footer />
-              <Toaster position="top-right" />
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  style: {
+                    background: '#0F172A',
+                    color: '#fff',
+                    border: '1px solid #1e293b',
+                    padding: '16px',
+                    borderRadius: '16px',
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                  },
+                  success: {
+                    iconTheme: {
+                      primary: '#8b5cf6',
+                      secondary: '#fff',
+                    },
+                    style: {
+                      border: '1px solid rgba(139, 92, 246, 0.2)',
+                    }
+                  },
+                  error: {
+                    iconTheme: {
+                      primary: '#f59e0b',
+                      secondary: '#fff',
+                    },
+                    style: {
+                      border: '1px solid rgba(245, 158, 11, 0.2)',
+                      color: '#fcd34d'
+                    }
+                  },
+                }}
+              />
             </div>
           </Router>
         </AuthProvider>

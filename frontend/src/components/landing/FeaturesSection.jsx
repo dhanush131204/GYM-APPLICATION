@@ -33,7 +33,7 @@ const FeaturesSection = () => {
         <section className="py-32 bg-white dark:bg-[#0a0a0b] font-sans">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-24 max-w-3xl animate-fade-in">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black uppercase tracking-widest rounded-lg mb-6">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-black uppercase tracking-widest rounded-lg mb-6">
                         System Architecture
                     </div>
                     <h2 className="mb-8">Precision-Engineered <br /> <span className="text-slate-400 dark:text-slate-500 text-3xl md:text-5xl">For Human Optimization.</span></h2>
@@ -55,7 +55,7 @@ const FeaturesSection = () => {
                             <h4 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight mb-4 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                                 {feature.title}
                             </h4>
-                            <p className="text-[10px] font-bold text-slate-400 leading-relaxed uppercase tracking-tighter">
+                            <p className="text-xs font-bold text-slate-400 leading-relaxed uppercase tracking-tighter">
                                 {feature.desc}
                             </p>
                         </div>

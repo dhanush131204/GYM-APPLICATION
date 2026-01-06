@@ -31,31 +31,31 @@ const FeedbackModal = ({ exerciseName, onClose }) => {
         <AnimatePresence>
             <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
                 <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
+                    initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.9, opacity: 0 }}
-                    className="bg-gray-800 rounded-2xl max-w-md w-full p-6 shadow-xl border border-gray-700"
+                    exit={{ scale: 0.95, opacity: 0 }}
+                    className="bg-white dark:bg-[#111214] rounded-[2.5rem] max-w-lg w-full p-10 shadow-premium border border-slate-200 dark:border-slate-800"
                 >
                     {!advice ? (
                         <>
-                            <h2 className="text-2xl font-bold mb-4 text-center">Great Work! 💪</h2>
-                            <p className="text-gray-400 text-center mb-6">How was that set of {exerciseName}?</p>
+                            <h2 className="text-4xl font-black mb-4 text-center text-slate-900 dark:text-white uppercase tracking-tighter">Session <span className="text-primary-500">Success.</span></h2>
+                            <p className="text-sm font-bold text-slate-500 text-center mb-10 uppercase tracking-widest">Diagnostic feedback required for {exerciseName}.</p>
 
-                            <div className="space-y-4 mb-6">
+                            <div className="space-y-8 mb-10">
                                 <div>
-                                    <label className="block text-sm font-medium mb-2">Did you feel any pain?</label>
+                                    <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4 text-center">Somatic Signal Detection: Pain?</label>
                                     <div className="flex gap-4">
                                         <button
                                             onClick={() => setPain(false)}
-                                            className={`flex-1 py-2 rounded-lg border ${!pain ? 'bg-green-600 border-green-600' : 'border-gray-600 hover:bg-gray-700'}`}
+                                            className={`flex-1 py-4 rounded-xl text-xs font-black uppercase tracking-widest border transition-all ${!pain ? 'bg-primary-50 border-primary-200 text-primary-600 dark:bg-primary-900/20 dark:border-primary-800/50 shadow-sm' : 'border-slate-100 dark:border-slate-800 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'}`}
                                         >
-                                            No, I'm good
+                                            No Signal
                                         </button>
                                         <button
                                             onClick={() => setPain(true)}
-                                            className={`flex-1 py-2 rounded-lg border ${pain ? 'bg-amber-500 border-amber-500' : 'border-gray-600 hover:bg-gray-700'}`}
+                                            className={`flex-1 py-4 rounded-xl text-xs font-black uppercase tracking-widest border transition-all ${pain ? 'bg-primary-50 border-primary-200 text-primary-600 dark:bg-primary-900/10 dark:border-primary-800/50 shadow-sm' : 'border-slate-100 dark:border-slate-800 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50'}`}
                                         >
-                                            Yes, a little
+                                            Signal Detected
                                         </button>
                                     </div>
                                 </div>
@@ -63,21 +63,21 @@ const FeedbackModal = ({ exerciseName, onClose }) => {
                                 {pain && (
                                     <input
                                         type="text"
-                                        placeholder="Where does it hurt? (e.g., Lower Back)"
+                                        placeholder="LOCATION COORDINATES (E.G. LOWER LUMBAR)"
                                         value={painArea}
                                         onChange={(e) => setPainArea(e.target.value)}
-                                        className="w-full bg-gray-700 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 rounded-xl py-4 px-6 outline-none focus:ring-1 focus:ring-primary-500 transition-all text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white"
                                     />
                                 )}
 
                                 <div>
-                                    <label className="block text-sm font-medium mb-2">Difficulty</label>
-                                    <div className="flex justify-between gap-2">
+                                    <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4 text-center">Intensity Calibration</label>
+                                    <div className="flex justify-between gap-3">
                                         {['easy', 'medium', 'hard'].map(d => (
                                             <button
                                                 key={d}
                                                 onClick={() => setDifficulty(d)}
-                                                className={`flex-1 capitalize py-2 rounded-lg text-sm ${difficulty === d ? 'bg-blue-600' : 'bg-gray-700'}`}
+                                                className={`flex-1 capitalize py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${difficulty === d ? 'bg-primary-600 text-white shadow-glow' : 'bg-slate-50 dark:bg-slate-900 text-slate-400 border border-slate-100 dark:border-slate-800'}`}
                                             >
                                                 {d}
                                             </button>
@@ -86,26 +86,28 @@ const FeedbackModal = ({ exerciseName, onClose }) => {
                                 </div>
                             </div>
 
-                            <div className="flex gap-3">
-                                <button onClick={onClose} className="flex-1 py-3 text-gray-400 hover:text-white">Skip</button>
+                            <div className="flex gap-4">
+                                <button onClick={onClose} className="flex-1 py-4 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">Discard</button>
                                 <button
                                     onClick={handleSubmit}
-                                    disabled={loading}
-                                    className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 py-3 rounded-xl font-bold hover:opacity-90 disabled:opacity-50"
+                                    disabled={loading || (pain && !painArea)}
+                                    className="flex-1 btn-primary py-4 rounded-2xl shadow-glow"
                                 >
-                                    {loading ? 'Analyzing...' : 'Submit'}
+                                    {loading ? 'Processing...' : 'Sync Data'}
                                 </button>
                             </div>
                         </>
                     ) : (
                         <div className="text-center">
-                            <h3 className="text-xl font-bold mb-4 text-blue-400">AI Coach Advice</h3>
-                            <p className="text-gray-300 mb-6 bg-gray-700/50 p-4 rounded-lg">{advice}</p>
+                            <h3 className="text-xs font-black mb-8 text-primary-500 uppercase tracking-[0.3em]">Neural Insight Analysis</h3>
+                            <p className="text-sm font-bold text-slate-600 dark:text-slate-300 mb-10 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 leading-relaxed uppercase tracking-wide">
+                                {advice}
+                            </p>
                             <button
                                 onClick={onClose}
-                                className="w-full bg-blue-600 py-3 rounded-xl font-bold hover:bg-blue-700"
+                                className="w-full btn-primary py-4 rounded-2xl shadow-glow"
                             >
-                                Got it, thanks!
+                                Protocol Understood
                             </button>
                         </div>
                     )}

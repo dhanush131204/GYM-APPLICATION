@@ -32,17 +32,17 @@ const Feed = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <div className="flex justify-between items-end mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 border-b border-slate-100 dark:border-slate-800/50 pb-12">
         <div>
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-2">Community</h1>
-            <p className="text-slate-600 dark:text-slate-400">Connect with other elite athletes.</p>
+          <h1 className="text-5xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-3">Community <span className="text-primary-500">Nexus.</span></h1>
+          <p className="text-sm font-bold text-slate-500 uppercase tracking-widest leading-relaxed">Neural synchronization with elite global athletes.</p>
         </div>
-        
-        <button 
-            onClick={() => setShowCreate(true)} 
-            className="flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold rounded-xl transition-all shadow-lg shadow-slate-900/10 dark:shadow-none"
+
+        <button
+          onClick={() => setShowCreate(true)}
+          className="btn-primary px-8 py-5 rounded-2xl shadow-glow"
         >
-          <FiPlus size={20} /> New Post
+          <FiPlus size={20} /> New Discussion Protocol
         </button>
       </div>
 
@@ -58,25 +58,25 @@ const Feed = () => {
 
       <div className="space-y-6">
         {posts.length === 0 ? (
-          <div className="text-center py-20 px-6 bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-2xl border-dashed">
-            <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
-                <FiMessageSquare size={24} />
+          <div className="text-center py-32 px-10 bg-slate-50 dark:bg-slate-900/50 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-inner">
+            <div className="w-20 h-20 bg-primary-100 dark:bg-primary-900/20 rounded-3xl flex items-center justify-center mx-auto mb-10 text-primary-500 shadow-glow">
+              <FiMessageSquare size={32} />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">No discussions yet</h3>
-            <p className="text-slate-500 mb-6 max-w-sm mx-auto">
-                Be the first to share your progress or ask a question to the community.
+            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tighter">Quiet <span className="text-primary-500">Nexus.</span></h3>
+            <p className="text-sm font-bold text-slate-500 mb-12 max-w-sm mx-auto uppercase tracking-widest leading-relaxed">
+              Neural channel idle. Initialize a discussion protocol to synchronize progress.
             </p>
-            <button 
-                onClick={() => setShowCreate(true)} 
-                className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline"
+            <button
+              onClick={() => setShowCreate(true)}
+              className="btn-primary px-10 py-5 rounded-[1.5rem] shadow-glow"
             >
-                Start a conversation
+              Start Conversation
             </button>
           </div>
         ) : (
           posts.map((post) => (
             <div key={post._id} className="animate-fade-in-up">
-                 <PostCard post={post} onUpdate={loadPosts} />
+              <PostCard post={post} onUpdate={loadPosts} />
             </div>
           ))
         )}

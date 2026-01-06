@@ -80,16 +80,16 @@ const Diet = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 border-b border-slate-100 dark:border-slate-800/50 pb-12">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-2">Nutrition & Macros</h1>
-          <p className="text-slate-600 dark:text-slate-400">Track your caloric intake and meal plans.</p>
+          <h1 className="text-5xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-3">Equilibrium <span className="text-primary-500">Protocol.</span></h1>
+          <p className="text-sm font-bold text-slate-500 uppercase tracking-widest leading-relaxed">Precision macro-nutrient orchestration & metabolic tracking.</p>
         </div>
         <button
           onClick={() => setShowPlanner(!showPlanner)}
-          className="flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold rounded-xl transition-all shadow-lg shadow-slate-900/10 dark:shadow-none"
+          className="btn-primary px-8 py-5 rounded-2xl shadow-glow"
         >
-          {showPlanner ? 'Close Planner' : <><FiPlus /> New Meal Plan</>}
+          {showPlanner ? 'Terminate Planner' : <><FiPlus size={18} /> New Nutrition Protocol</>}
         </button>
       </div>
 
@@ -102,19 +102,19 @@ const Diet = () => {
       )}
 
       {!showPlanner && diets.length === 0 && (
-        <div className="max-w-2xl mx-auto text-center py-20 px-6">
-          <div className="w-20 h-20 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-3xl flex items-center justify-center mx-auto mb-8 transform -rotate-3">
-            <span className="text-4xl">🍎</span>
+        <div className="max-w-3xl mx-auto text-center py-32 px-10 bg-slate-50 dark:bg-slate-900/50 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-inner">
+          <div className="w-24 h-24 bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 rounded-3xl flex items-center justify-center mx-auto mb-10 transform -rotate-6 shadow-glow">
+            <FiZap size={48} />
           </div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Precision Nutrition</h3>
-          <p className="text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
-            Fuel your performance. Let our algorithms calculate your exact macro targets and generate a meal plan.
+          <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tighter">Metabolic <span className="text-primary-500">Optimization.</span></h3>
+          <p className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-12 leading-relaxed uppercase tracking-[0.2em]">
+            Fuel your performance data. Neural algorithms required to calibrate macro-nutrient targets.
           </p>
           <button
             onClick={() => setShowPlanner(true)}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all shadow-xl shadow-emerald-600/20"
+            className="btn-primary px-12 py-5 rounded-[1.5rem] shadow-glow"
           >
-            <FiPlus /> Create Nutrition Plan
+            <FiPlus size={20} /> Initialize Protocol
           </button>
         </div>
       )}
@@ -125,47 +125,47 @@ const Diet = () => {
             <div key={diet._id} className="space-y-6">
 
               {/* Plan Header Card */}
-              <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+              <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 shadow-premium">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
                   <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+                    <div className="flex items-center gap-4 mb-3">
+                      <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">
                         {diet.goal.replace('_', ' ')}
                       </h3>
-                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide ${diet.status === 'active' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-slate-100 text-slate-600'
+                      <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] ${diet.status === 'active' ? 'bg-emerald-50 text-emerald-600 dark:bg-emerald-900/20 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800/50 shadow-sm' : 'bg-slate-50 text-slate-500 border border-slate-100'
                         }`}>
                         {diet.status}
                       </span>
                     </div>
-                    <p className="text-sm text-slate-500 flex items-center gap-2">
-                      <FiCalendar className="w-4 h-4" /> Generated on {new Date(diet.createdAt).toLocaleDateString()}
+                    <p className="text-xs font-bold text-slate-400 flex items-center gap-3 uppercase tracking-widest">
+                      <FiCalendar size={14} className="text-primary-500" /> Synchronization Origin: {new Date(diet.createdAt).toLocaleDateString()}
                     </p>
                   </div>
 
                   <button
                     onClick={() => handleDeleteDiet(diet._id)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-slate-400 hover:text-rose-600 transition-colors bg-slate-50 hover:bg-rose-50 dark:bg-slate-900 dark:hover:bg-rose-900/10 rounded-lg"
+                    className="flex items-center gap-2 px-6 py-3 text-xs font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/20 transition-all border border-slate-50 dark:border-slate-900/30 rounded-xl"
                   >
-                    <FiTrash2 /> Delete Plan
+                    <FiTrash2 /> Purge Protocol
                   </button>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-800">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-inner">
                   <div className="text-center">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Calories</p>
-                    <p className="text-2xl font-black text-slate-900 dark:text-white">{diet.targetCalories}</p>
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Target Calories</p>
+                    <p className="text-3xl font-black text-slate-900 dark:text-white tabular-nums">{diet.targetCalories}</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Protein</p>
-                    <p className="text-2xl font-black text-indigo-600 dark:text-indigo-400">{diet.targetProtein}g</p>
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Protein Threshold</p>
+                    <p className="text-3xl font-black text-primary-500 tabular-nums">{diet.targetProtein}g</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Carbs</p>
-                    <p className="text-2xl font-black text-emerald-600 dark:text-emerald-400">{diet.targetCarbs}g</p>
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Glucids Matrix</p>
+                    <p className="text-3xl font-black text-secondary-500 tabular-nums">{diet.targetCarbs}g</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Fats</p>
-                    <p className="text-2xl font-black text-amber-500">{diet.targetFats}g</p>
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Lipidic Density</p>
+                    <p className="text-3xl font-black text-primary-400 tabular-nums">{diet.targetFats}g</p>
                   </div>
                 </div>
               </div>
@@ -173,9 +173,9 @@ const Diet = () => {
               {/* Meals Grid */}
               <div className="grid grid-cols-1 gap-6">
                 {diet.dailyMeals.map((day, i) => (
-                  <div key={day._id || i} className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
-                    <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                      <span className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-sm">
+                  <div key={day._id || i} className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-10 shadow-premium">
+                    <h4 className="text-xl font-black text-slate-900 dark:text-white mb-10 flex items-center gap-6 uppercase tracking-tighter">
+                      <span className="w-12 h-12 rounded-2xl bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center text-sm font-black text-primary-600 shadow-sm">
                         {i + 1}
                       </span>
                       {new Date(day.date).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' })}

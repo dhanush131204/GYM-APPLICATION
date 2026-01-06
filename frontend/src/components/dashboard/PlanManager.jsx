@@ -56,111 +56,117 @@ const PlanManager = () => {
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center">
-                <h2 className="text-xl font-bold">Membership Plans</h2>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
+                <div>
+                    <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">Sub-Subscription <span className="text-primary-500">Architecture.</span></h2>
+                    <p className="text-sm font-bold text-slate-500 uppercase tracking-widest mt-2 leading-relaxed">System-wide fiscal tier configuration and lifecycle protocols.</p>
+                </div>
                 <button
                     onClick={() => setShowForm(!showForm)}
-                    className="btn-primary flex items-center gap-2"
+                    className="btn-primary flex items-center gap-4 px-8 py-5 rounded-2xl shadow-glow"
                 >
-                    <FiPlus /> Create Plan
+                    <FiPlus size={20} /> Initialize New Tier
                 </button>
             </div>
 
             {showForm && (
-                <div className="card bg-gray-50 dark:bg-gray-800 border dark:border-gray-700">
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white dark:bg-[#111214] border border-primary-500/20 rounded-[2.5rem] p-10 mb-16 animate-fade-in shadow-premium overflow-hidden relative">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-secondary-500" />
+                    <form onSubmit={handleSubmit} className="space-y-10">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <div>
-                                <label className="block text-sm font-medium mb-1">Plan Name</label>
+                                <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-4 italic">Tier Designation</label>
                                 <input
                                     type="text"
                                     required
-                                    placeholder="e.g. Gold Tier"
-                                    className="input-field"
+                                    placeholder="SYNCHRONIZE DESIGNATION..."
+                                    className="input-field py-4"
                                     value={formData.name}
                                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Price ($)</label>
+                                <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-4 italic">Fiscal Valuation (USD)</label>
                                 <input
                                     type="number"
                                     required
-                                    placeholder="e.g. 50"
-                                    className="input-field"
+                                    placeholder="VALUATION..."
+                                    className="input-field py-4"
                                     value={formData.price}
                                     onChange={e => setFormData({ ...formData, price: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Duration (Months)</label>
+                                <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-4 italic">Cycle Interval (Months)</label>
                                 <input
                                     type="number"
                                     required
                                     min="1"
-                                    className="input-field"
+                                    className="input-field py-4"
                                     value={formData.duration}
                                     onChange={e => setFormData({ ...formData, duration: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Features (comma separated)</label>
+                                <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-4 italic">Operational Utility Set (CSV)</label>
                                 <input
                                     type="text"
-                                    placeholder="Workout plan, Diet plan, Weekly check-in"
-                                    className="input-field"
+                                    placeholder="UTILITY 01, UTILITY 02..."
+                                    className="input-field py-4"
                                     value={formData.features}
                                     onChange={e => setFormData({ ...formData, features: e.target.value })}
                                 />
                             </div>
                         </div>
-                        <div className="flex justify-end gap-2">
+                        <div className="flex justify-end gap-6 pt-6 border-t border-slate-50 dark:border-slate-800/50">
                             <button
                                 type="button"
                                 onClick={() => setShowForm(false)}
-                                className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                                className="px-8 py-4 text-xs font-black text-slate-400 uppercase tracking-widest hover:text-slate-600 dark:hover:text-white transition-colors"
                             >
-                                Cancel
+                                Terminate Initialization
                             </button>
-                            <button type="submit" className="btn-primary">
-                                Save Plan
+                            <button type="submit" className="btn-primary px-12 py-4 rounded-xl shadow-glow">
+                                Commit Tier Synchronization
                             </button>
                         </div>
                     </form>
                 </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {plans.map(plan => (
-                    <div key={plan._id} className="card relative group hover:shadow-md transition-shadow">
-                        <div className="flex justify-between items-start">
+                    <div key={plan._id} className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 p-12 rounded-[3rem] shadow-premium hover:shadow-glow transition-all relative group overflow-hidden">
+                        <div className="flex justify-between items-start mb-10">
                             <div>
-                                <div className="flex items-center gap-2 mb-1">
-                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{plan.name}</h3>
-                                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${plan.isActive ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'}`}>
-                                        {plan.isActive ? 'Active' : 'Archived'}
+                                <div className="flex items-center gap-4 mb-4">
+                                    <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">{plan.name}</h3>
+                                    <span className={`px-3 py-1 rounded-lg text-xs font-black uppercase tracking-[0.2em] border ${plan.isActive ? 'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-900/10 dark:text-emerald-400 dark:border-emerald-800/50' : 'bg-slate-100 text-slate-500 border-slate-200'}`}>
+                                        {plan.isActive ? 'ACTIVE::SYNC' : 'ARCHIVED'}
                                     </span>
                                 </div>
-                                <p className="text-2xl font-bold flex items-center text-slate-900 dark:text-white">
-                                    <span className="text-sm font-normal text-slate-500 mr-0.5">$</span>
+                                <p className="text-5xl font-black flex items-end text-slate-900 dark:text-white tracking-tighter tabular-nums">
+                                    <span className="text-xl font-black text-primary-500 mr-1.5">$</span>
                                     {plan.price}
-                                    <span className="text-sm text-slate-500 font-normal ml-1">/ {plan.duration} mo</span>
+                                    <span className="text-xs text-slate-400 font-black ml-3 uppercase tracking-[0.2em] mb-2 opacity-60">/ {plan.duration} CYCLES</span>
                                 </p>
                             </div>
                             <button
                                 onClick={() => handleDelete(plan._id)}
-                                className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                                title="Delete Plan"
+                                className="p-4 text-slate-300 hover:text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-2xl transition-all opacity-0 group-hover:opacity-100 border border-transparent hover:border-primary-100"
+                                title="Terminate Tier"
                             >
-                                <FiTrash2 className="w-5 h-5" />
+                                <FiTrash2 size={24} />
                             </button>
                         </div>
-                        <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-                            <p className="text-xs font-semibold text-slate-500 uppercase mb-2">Features</p>
-                            <ul className="text-sm text-slate-600 dark:text-gray-300 space-y-1">
+                        <div className="mt-10 pt-10 border-t border-slate-100 dark:border-slate-800/50">
+                            <p className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-8 italic">Operational Utilities</p>
+                            <ul className="space-y-6">
                                 {plan.features.map((f, i) => (
-                                    <li key={i} className="flex items-start gap-2">
-                                        <span className="text-emerald-500 mt-0.5">✓</span>
+                                    <li key={i} className="flex items-center gap-5 text-sm font-black text-slate-600 dark:text-slate-400 uppercase tracking-widest">
+                                        <div className="w-6 h-6 rounded-lg bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center text-primary-500 border border-primary-100 dark:border-primary-800/50 shadow-sm">
+                                            <span className="text-xs font-black">✓</span>
+                                        </div>
                                         {f}
                                     </li>
                                 ))}

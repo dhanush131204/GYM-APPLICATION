@@ -30,7 +30,7 @@ const Leaderboard = () => {
     if (rank === 1) return { icon: <FaTrophy className="text-amber-500" />, bg: 'bg-amber-50 dark:bg-amber-900/20', text: 'text-amber-600' };
     if (rank === 2) return { icon: <FiAward className="text-slate-400" />, bg: 'bg-slate-50 dark:bg-slate-800', text: 'text-slate-500' };
     if (rank === 3) return { icon: <FiAward className="text-orange-400" />, bg: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600' };
-    return { icon: <span className="text-[10px] font-black text-slate-400">#{rank}</span>, bg: 'bg-white dark:bg-transparent', text: '' };
+    return { icon: <span className="text-xs font-black text-slate-400">#{rank}</span>, bg: 'bg-white dark:bg-transparent', text: '' };
   };
 
   if (loading) {
@@ -41,7 +41,7 @@ const Leaderboard = () => {
     <div className="max-w-5xl mx-auto py-12 animate-fade-in font-sans">
       <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black uppercase tracking-widest rounded-lg mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-black uppercase tracking-widest rounded-lg mb-4">
             <FiCommand className="inline" /> Performance Registry
           </div>
           <h1 className="font-black text-slate-900 dark:text-white">Elite Hierarchy.</h1>
@@ -57,7 +57,7 @@ const Leaderboard = () => {
             <button
               key={p.id}
               onClick={() => setPeriod(p.id)}
-              className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${period === p.id
+              className={`px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${period === p.id
                 ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm'
                 : 'text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
@@ -72,7 +72,7 @@ const Leaderboard = () => {
         {leaderboard.length === 0 ? (
           <div className="p-20 text-center">
             <FiTrendingUp className="mx-auto text-slate-200 dark:text-slate-800 mb-6" size={48} />
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">No Active Operational Data</p>
+            <p className="text-xs font-black text-slate-400 uppercase tracking-widest">No Active Operational Data</p>
           </div>
         ) : (
           <div className="divide-y divide-slate-100 dark:divide-slate-800/50">
@@ -96,7 +96,7 @@ const Leaderboard = () => {
                       </div>
                       <div>
                         <h4 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">{entry.user?.name}</h4>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">
                           Level {entry.level || 1} <span className="mx-2 opacity-20">|</span> Verified
                         </p>
                       </div>
@@ -107,7 +107,7 @@ const Leaderboard = () => {
                     <p className={`text-2xl font-black tracking-tighter ${rank <= 3 ? style.text : 'text-slate-900 dark:text-white'}`}>
                       {entry.points.toLocaleString()}
                     </p>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-widest mt-1">
                       Protocol Points
                     </p>
                   </div>
@@ -119,7 +119,7 @@ const Leaderboard = () => {
       </div>
 
       <div className="mt-12 text-center">
-        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest opacity-40">
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest opacity-40">
           Authenticated Real-Time Ledger
         </p>
       </div>

@@ -32,15 +32,15 @@ const Workouts = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 border-b border-slate-100 dark:border-slate-800/50 pb-12">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight mb-2">My Workouts</h1>
-          <p className="text-slate-600 dark:text-slate-400">Manage your training schedule and track progress.</p>
+          <h1 className="text-5xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-3">Protocol <span className="text-primary-500">Repository.</span></h1>
+          <p className="text-sm font-bold text-slate-500 uppercase tracking-widest leading-relaxed">System-wide operative training cycles & periodization status.</p>
         </div>
 
         <button
           onClick={() => setShowPlanner(!showPlanner)}
-          className="flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold rounded-xl transition-all shadow-lg shadow-slate-900/10 dark:shadow-none"
+          className="btn-primary px-8 py-5 rounded-2xl shadow-glow"
         >
           {showPlanner ? (
             <>
@@ -63,19 +63,19 @@ const Workouts = () => {
       )}
 
       {workouts.length === 0 ? (
-        <div className="max-w-2xl mx-auto text-center py-20 px-6">
-          <div className="w-20 h-20 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-3xl flex items-center justify-center mx-auto mb-8 transform rotate-3">
-            <FiZap className="w-10 h-10" />
+        <div className="max-w-3xl mx-auto text-center py-32 px-10 bg-slate-50 dark:bg-slate-900/50 rounded-[3rem] border border-slate-100 dark:border-slate-800 shadow-inner">
+          <div className="w-24 h-24 bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 rounded-3xl flex items-center justify-center mx-auto mb-10 transform rotate-3 shadow-glow">
+            <FiZap size={48} />
           </div>
-          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Initialize Your Training</h3>
-          <p className="text-lg text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
-            Your workspace is empty. Let our AI construct a personalized periodization plan based on your biometrics.
+          <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tighter">Initialize <span className="text-primary-500">Protocols.</span></h3>
+          <p className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-12 leading-relaxed uppercase tracking-[0.2em]">
+            Neural training node idle. Deploy algorithms to construct personalized periodization cycles.
           </p>
           <button
             onClick={() => setShowPlanner(true)}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-xl shadow-indigo-600/20"
+            className="btn-primary px-12 py-5 rounded-[1.5rem] shadow-glow"
           >
-            <FiPlus /> Generate First Protocol
+            <FiPlus size={20} /> Initialize First Protocol
           </button>
         </div>
       ) : (

@@ -161,7 +161,7 @@ const CheckoutModal = ({ plan, isOpen, onClose, onSuccess }) => {
                                     <>Pay ${plan.price} & Secure Access</>
                                 )}
                             </button>
-                            <div className="mt-4 flex items-center justify-center gap-2 text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                            <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400 font-bold uppercase tracking-widest">
                                 <FiLock className="w-3 h-3" /> Encrypted & Secure Payment
                             </div>
                         </div>

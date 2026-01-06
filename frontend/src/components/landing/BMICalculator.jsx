@@ -22,7 +22,7 @@ const BMICalculator = () => {
                 <div className="grid lg:grid-cols-2 gap-20 items-center">
 
                     <div className="animate-fade-in">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-900 text-slate-500 text-[10px] font-black uppercase tracking-widest rounded-lg mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 dark:bg-slate-900 text-slate-500 text-xs font-black uppercase tracking-widest rounded-lg mb-6">
                             Biometric Analysis
                         </div>
                         <h2 className="mb-8">Body Composition Registry.</h2>
@@ -42,7 +42,7 @@ const BMICalculator = () => {
                                     </div>
                                     <div>
                                         <h4 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">{item.title}</h4>
-                                        <p className="text-[10px] font-bold text-slate-400 uppercase mt-1 tracking-tighter">{item.desc}</p>
+                                        <p className="text-xs font-bold text-slate-400 uppercase mt-1 tracking-tighter">{item.desc}</p>
                                     </div>
                                 </div>
                             ))}
@@ -56,7 +56,7 @@ const BMICalculator = () => {
 
                         <div className="grid gap-12 mb-12">
                             <div>
-                                <label className="flex justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
+                                <label className="flex justify-between text-xs font-black text-slate-400 uppercase tracking-widest mb-4">
                                     <span>Weight Protocol</span>
                                     <span className="text-slate-900 dark:text-white">{weight} KG</span>
                                 </label>
@@ -71,7 +71,7 @@ const BMICalculator = () => {
                             </div>
 
                             <div>
-                                <label className="flex justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
+                                <label className="flex justify-between text-xs font-black text-slate-400 uppercase tracking-widest mb-4">
                                     <span>Height Protocol</span>
                                     <span className="text-slate-900 dark:text-white">{height} CM</span>
                                 </label>
@@ -87,8 +87,8 @@ const BMICalculator = () => {
                         </div>
 
                         <div className="bg-slate-50 dark:bg-[#0a0a0b] rounded-[2rem] p-10 text-center border border-slate-100 dark:border-slate-800/60 shadow-inner">
-                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-4">Calculated BMI</p>
-                            <p className="text-7xl font-black text-slate-900 dark:text-white tracking-tighter mb-6">{bmi}</p>
+                            <p className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-4">Calculated BMI</p>
+                            <p className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tighter mb-6">{bmi}</p>
 
                             <div className={`badge ${status.bg.replace('bg-', 'bg-').replace('500', '100').replace('600', '100')} ${status.color}`}>
                                 {status.label}
