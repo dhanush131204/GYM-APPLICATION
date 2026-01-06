@@ -6,6 +6,16 @@ export default {
   ],
   darkMode: 'class',
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '1rem',
+        md: '2rem',
+        lg: '3rem',
+        xl: '4rem',
+      },
+    },
     extend: {
       colors: {
         // 2030 Premium Palette: Deep Navy & Electric Violet

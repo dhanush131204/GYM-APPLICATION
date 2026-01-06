@@ -8,10 +8,15 @@
     --font-sans: 'Inter', 'Outfit', system-ui, sans-serif;
   }
 
+  /* Fluid typography: scales between mobile and desktop for rem-based sizes */
+  html {
+    font-size: clamp(14px, 1.2vw + 12px, 18px);
+  }
+
   body {
     @apply bg-slate-50 text-slate-900 dark:bg-[#0a0a0b] dark:text-slate-50 antialiased selection:bg-primary-500/30 font-sans;
     font-size: 1rem;
-    /* Base size: 16px */
+    /* Base size scales via html clamp above */
   }
 
   h1,
@@ -49,7 +54,7 @@
 
   /* --- Buttons (Premium Enterprise Style) --- */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 text-xs font-black uppercase tracking-[0.2em] text-white transition-all duration-300 bg-primary-600 rounded-2xl hover:bg-primary-700 hover:shadow-glow disabled:opacity-30 shadow-xl active:scale-[0.98];
+    @apply inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-sm font-black uppercase tracking-[0.12em] text-white transition-all duration-300 bg-primary-600 rounded-2xl hover:bg-primary-700 hover:shadow-glow disabled:opacity-30 shadow-xl active:scale-[0.98];
   }
 
   .btn-secondary {
@@ -63,7 +68,7 @@
 
   /* --- Unified Card System --- */
   .card {
-    @apply p-8 bg-white border border-slate-200/50 shadow-premium rounded-[2.5rem] dark:bg-[#111214] dark:border-slate-800/50 transition-all duration-500;
+    @apply p-6 sm:p-8 md:p-10 bg-white border border-slate-200/50 shadow-premium rounded-[2rem] sm:rounded-[2.5rem] dark:bg-[#111214] dark:border-slate-800/50 transition-all duration-500;
   }
 
   .card-premium {

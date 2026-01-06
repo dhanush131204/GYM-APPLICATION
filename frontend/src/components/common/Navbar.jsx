@@ -38,7 +38,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             {user ? (
               <>
                 <div className="flex items-center gap-6 text-sm font-black uppercase tracking-[0.2em] text-slate-400">
@@ -111,7 +111,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex xl:hidden items-center gap-4">
+          <div className="flex lg:hidden items-center gap-4">
             <button
               onClick={toggleTheme}
               className="p-2.5 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -130,7 +130,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-white dark:bg-[#0a0a0b] border-t border-slate-200 dark:border-slate-800 px-8 py-12 space-y-8 shadow-premium animate-fade-in-up">
+        <div className="lg:hidden bg-white dark:bg-[#0a0a0b] border-t border-slate-200 dark:border-slate-800 px-8 py-12 space-y-8 shadow-premium animate-fade-in-up">
           {user ? (
             <div className="space-y-4">
               <div className="px-8 py-6 bg-slate-50 dark:bg-slate-900/50 rounded-[2.5rem] mb-10 border border-slate-100 dark:border-slate-800">
