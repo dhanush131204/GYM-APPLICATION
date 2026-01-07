@@ -3,7 +3,7 @@ import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 if (!BASE_URL) {
-  console.warn('⚠️ VITE_API_BASE_URL is not defined. API calls may fail.');
+  throw new Error('CRITICAL: VITE_API_BASE_URL is missing. Application cannot start.');
 }
 const API_URL = `${BASE_URL}/api`;
 
