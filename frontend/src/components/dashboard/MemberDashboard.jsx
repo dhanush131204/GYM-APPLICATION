@@ -188,7 +188,7 @@ const MemberDashboard = () => {
               </div>
             </div>
           </div>
-          <button className="btn-primary w-full py-5 mt-12 rounded-[1.5rem] shadow-glow uppercase tracking-[0.3em] font-black text-xs">
+          <button className="btn-primary w-[90%] sm:w-full mx-auto block sm:mx-0 py-3 sm:py-5 mt-8 sm:mt-12 rounded-xl sm:rounded-[1.5rem] shadow-glow uppercase tracking-[0.2em] sm:tracking-[0.3em] font-black text-[10px] sm:text-xs">
             Comprehensive System Audit
           </button>
         </div>

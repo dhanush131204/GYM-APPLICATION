@@ -39,7 +39,7 @@ const ExerciseLibrary = () => {
 
     return (
         <div className="min-h-screen">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-28 sm:pt-12">
                 <div className="text-center mb-16 sm:mb-20 animate-fade-in">
                     <h1 className="text-slate-900 dark:text-white mb-6 tracking-tighter uppercase">Protocol <span className="text-primary-500">Repository.</span></h1>
                     <p className="text-base font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest max-w-2xl mx-auto leading-relaxed px-4">
@@ -48,7 +48,7 @@ const ExerciseLibrary = () => {
                 </div>
 
                 {/* Filters */}
-                <div className="flex justify-center gap-4 mb-16 overflow-x-auto pb-4 scrollbar-hide">
+                <div className="flex justify-start sm:justify-center gap-3 sm:gap-4 mb-10 sm:mb-16 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
                     {['All', 'Chest', 'Legs', 'Back', 'Beginner', 'Advanced'].map(f => (
                         <button
                             key={f}
