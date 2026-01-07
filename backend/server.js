@@ -55,11 +55,13 @@ import MembershipPlan from './src/models/MembershipPlan.js';
 const app = express();
 
 // Middleware
+// ===== CORS CONFIG (FIXED) =====
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:5173',
-  'https://elegant-taiyaki-3a2f3c.netlify.app'
+  'https://elegant-taiyaki-3a2f3c.netlify.app',
+  'https://fitnessapplicationfrogym.netlify.app' // ✅ ADD THIS
 ];
 
 app.use(cors({
