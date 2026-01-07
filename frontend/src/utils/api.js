@@ -5,7 +5,9 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 if (!BASE_URL) {
   throw new Error('CRITICAL: VITE_API_BASE_URL is missing. Application cannot start.');
 }
-const API_URL = `${BASE_URL}/api`;
+
+// 🔥 FIX: remove trailing slash if present
+const API_URL = `${BASE_URL.replace(/\/$/, '')}/api`;
 
 export { BASE_URL };
 
