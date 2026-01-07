@@ -10,8 +10,8 @@
 
   /* Fluid typography: scales between mobile and desktop */
   html {
-    /* 14px at 320px -> 18px at 1440px */
-    font-size: clamp(14px, 0.4vw + 12.7px, 18px);
+    /* Refined scale: 14px at 320px -> 16px at 1440px (More professional, less "toy-like") */
+    font-size: clamp(14px, 0.25vw + 13.5px, 16px);
   }
 
   body {
@@ -30,9 +30,9 @@
   }
 
   h1 {
-    /* Fluid scaling: 1.75rem at 320px -> 3.5rem at 1440px */
-    font-size: clamp(1.75rem, 5vw + 0.5rem, 3.5rem);
-    @apply leading-[1.1] md:leading-[1];
+    /* Reduced scaling: 1.75rem -> 2.75rem (Was 3.5rem) */
+    font-size: clamp(1.75rem, 3vw + 1rem, 2.75rem);
+    @apply leading-[1.2] md:leading-[1.1] text-slate-900 dark:text-white;
   }
 
   h2 {
@@ -52,7 +52,7 @@
   }
 
   p {
-    @apply leading-relaxed text-slate-600 dark:text-slate-400 text-sm md:text-base;
+    @apply leading-relaxed text-slate-700 dark:text-slate-300 text-sm md:text-base font-normal;
   }
 }
 
@@ -61,7 +61,7 @@
 
   /* --- Buttons (Premium Enterprise Style) --- */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-xs sm:text-sm font-black uppercase tracking-[0.12em] text-white transition-all duration-300 bg-primary-600 rounded-2xl hover:bg-primary-700 hover:shadow-glow disabled:opacity-30 shadow-xl active:scale-[0.98];
+    @apply inline-flex items-center justify-center px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 bg-indigo-600 rounded-xl hover:bg-indigo-700 hover:shadow-lg disabled:opacity-50 shadow-md active:scale-[0.98];
   }
 
   .btn-secondary {
