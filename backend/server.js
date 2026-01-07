@@ -111,11 +111,17 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-// Only listen if the file is run directly (not imported)
+// Only listen if the file is run directly (not imported) or if NOT running on Vercel
+// Vercel sets the 'VERCEL' environment variable to '1'
 import { fileURLToPath } from 'url';
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+
+const isVercel = process.env.VERCEL === '1';
+const isDirectRun = process.argv[1] === fileURLToPath(import.meta.url);
+
+if (!isVercel || isDirectRun) {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`Debug: VERCEL=${process.env.VERCEL}, DirectRun=${isDirectRun}`);
   });
 }
 
