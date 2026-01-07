@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
-
 dotenv.config({ path: './.env' });
 
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { fileURLToPath } from 'url';
 
 import connectDB from './src/config/database.js';
 import { errorHandler } from './src/middleware/errorHandler.js';
@@ -25,18 +25,17 @@ import paymentRoutes from './src/routes/paymentRoutes.js';
 // 🔗 Connect to MongoDB
 connectDB();
 
-// Seed a default premium plan if none exist
+// Seed default membership plan
 import MembershipPlan from './src/models/MembershipPlan.js';
 
 (async () => {
   try {
     const count = await MembershipPlan.countDocuments();
     if (count === 0) {
-      console.log('Seeding default membership plan...');
       await MembershipPlan.create({
         name: 'Premium',
         price: 29.99,
-        duration: 1, // month
+        duration: 1,
         features: [
           'Personalized workout plans',
           'Custom diet plans',
@@ -45,54 +44,78 @@ import MembershipPlan from './src/models/MembershipPlan.js';
         ],
         isActive: true,
       });
-      console.log('Default Premium plan created.');
+      console.log('✅ Default Premium plan created');
     }
   } catch (err) {
-    console.error('Error seeding membership plans:', err.message || err);
+    console.error('❌ Membership seed error:', err.message);
   }
 })();
 
 const app = express();
 
-// Middleware
-// ===== CORS CONFIG (FIXED) =====
+/* ======================================================
+   ✅ FINAL CORS CONFIG (PATCH SAFE – NO FUTURE ERRORS)
+====================================================== */
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'http://localhost:5173',
   'https://elegant-taiyaki-3a2f3c.netlify.app',
-  'https://fitnessapplicationfrogym.netlify.app' // ✅ ADD THIS
+  'https://fitnessapplicationfrogym.netlify.app',
 ];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
-}));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('CORS not allowed'));
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'X-Requested-With',
+      'Accept',
+    ],
+  })
+);
 
-// Enable pre-flight requests for all routes
-app.options('*', cors());
+// ✅ Explicit preflight handler (CRITICAL)
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET,POST,PUT,PATCH,DELETE,OPTIONS'
+  );
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, X-Requested-With, Accept'
+  );
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(204);
+});
 
+/* ======================================================
+   MIDDLEWARE
+====================================================== */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
 
-// Routes
+/* ======================================================
+   ROUTES
+====================================================== */
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/diets', dietRoutes);
 app.use('/api/chatbot', chatbotRoutes);
-app.use('/api/trainer', trainerRoutes); // Registered Trainer Routes
+app.use('/api/trainer', trainerRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/community', communityRoutes);
 app.use('/api/gamification', gamificationRoutes);
@@ -108,22 +131,19 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Error handler (MUST be last)
+// Error handler (LAST)
 app.use(errorHandler);
 
+/* ======================================================
+   SERVER START
+====================================================== */
 const PORT = process.env.PORT || 5000;
-
-// Only listen if the file is run directly (not imported) or if NOT running on Vercel
-// Vercel sets the 'VERCEL' environment variable to '1'
-import { fileURLToPath } from 'url';
-
 const isVercel = process.env.VERCEL === '1';
 const isDirectRun = process.argv[1] === fileURLToPath(import.meta.url);
 
 if (!isVercel || isDirectRun) {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`Debug: VERCEL=${process.env.VERCEL}, DirectRun=${isDirectRun}`);
   });
 }
 
