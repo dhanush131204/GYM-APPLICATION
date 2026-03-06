@@ -41,9 +41,9 @@ const ExerciseLibrary = () => {
         <div className="min-h-screen">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-28 sm:pt-12">
                 <div className="text-center mb-16 sm:mb-20 animate-fade-in">
-                    <h1 className="text-slate-900 dark:text-white mb-6 tracking-tighter uppercase">Protocol <span className="text-primary-500">Repository.</span></h1>
+                    <h1 className="text-slate-900 dark:text-white mb-6 tracking-tighter uppercase">Exercise <span className="text-primary-500">Library.</span></h1>
                     <p className="text-base font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest max-w-2xl mx-auto leading-relaxed px-4">
-                        Master your biological form through <span className="text-primary-600 dark:text-primary-400">neural video guidance</span> and synchronized AI coaching modules.
+                        Master your fitness through <span className="text-primary-600 dark:text-primary-400">easy-to-follow video guides</span> and AI-powered coaching.
                     </p>
                 </div>
 
@@ -106,7 +106,7 @@ const ExerciseLibrary = () => {
                                     to={`/exercises/${exercise._id}`}
                                     className="block w-full py-4 text-center rounded-2xl text-xs font-black uppercase tracking-widest transition-all bg-slate-50 text-slate-900 hover:bg-primary-600 hover:text-white dark:bg-slate-900 dark:text-white dark:hover:bg-primary-600 shadow-sm hover:shadow-glow"
                                 >
-                                    Activate Coaching
+                                    Start Exercise
                                 </Link>
                             </div>
                         </motion.div>

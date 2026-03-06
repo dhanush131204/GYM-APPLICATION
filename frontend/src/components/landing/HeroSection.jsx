@@ -37,7 +37,7 @@ const HeroSection = () => {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-3 w-3 bg-primary-500"></span>
                             </span>
-                            <span className="text-primary-700 dark:text-primary-300 font-black text-xs tracking-widest uppercase text-center whitespace-normal leading-tight">Enterprise Ecosystem</span>
+                            <span className="text-primary-700 dark:text-primary-300 font-black text-xs tracking-widest uppercase text-center whitespace-normal leading-tight">Modern Fitness Community</span>
                         </motion.div>
 
                         <motion.h1
@@ -47,7 +47,7 @@ const HeroSection = () => {
                             className="mb-8 text-slate-900 dark:text-white text-center md:text-left break-words w-full"
                         >
                             Future of <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500 dark:from-primary-400 dark:to-secondary-400">Human Performance.</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-500 dark:from-primary-400 dark:to-secondary-400">Your Fitness Journey.</span>
                         </motion.h1>
 
                         <motion.p
@@ -56,7 +56,7 @@ const HeroSection = () => {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="text-base md:text-lg text-slate-500 dark:text-slate-400 mb-10 leading-relaxed max-w-xl font-medium"
                         >
-                            Empowering elite athletes and enterprise gym networks with real-time bio-analytics and AI-driven protocols.
+                            Helping you reach your goals with smart tracking and AI-powered workout plans.
                         </motion.p>
 
                         <motion.div
@@ -114,15 +114,15 @@ const HeroSection = () => {
                                         <FiActivity className="text-xl sm:text-2xl" />
                                     </div>
                                     <div>
-                                        <h3 className="text-lg sm:text-2xl font-black dark:text-white mb-0.5 sm:mb-1">REAL-TIME SYNC</h3>
-                                        <p className="text-[10px] sm:text-sm font-black text-primary-500 uppercase tracking-widest">Neural Link Active</p>
+                                        <h3 className="text-lg sm:text-2xl font-black dark:text-white mb-0.5 sm:mb-1">LIVE SYNC</h3>
+                                        <p className="text-[10px] sm:text-sm font-black text-primary-500 uppercase tracking-widest">AI Coach Ready</p>
                                     </div>
                                 </div>
 
                                 <div className="space-y-6 sm:space-y-8">
                                     <div>
                                         <div className="flex justify-between items-end mb-2 sm:mb-3">
-                                            <span className="text-[10px] sm:text-sm font-black uppercase tracking-widest text-slate-500">VO2 Max Efficiency</span>
+                                            <span className="text-[10px] sm:text-sm font-black uppercase tracking-widest text-slate-500">Stamina Level</span>
                                             <span className="text-sm sm:text-base font-black text-primary-600">84%</span>
                                         </div>
                                         <div className="h-2 sm:h-3 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
@@ -160,7 +160,7 @@ const HeroSection = () => {
                                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary-500 flex items-center justify-center">
                                     <FiZap size={16} />
                                 </div>
-                                <p className="text-[10px] sm:text-sm font-black uppercase tracking-widest whitespace-nowrap">Protocol Adaptive</p>
+                                <p className="text-[10px] sm:text-sm font-black uppercase tracking-widest whitespace-nowrap">Smarter Workouts</p>
                             </motion.div>
 
                             <motion.div

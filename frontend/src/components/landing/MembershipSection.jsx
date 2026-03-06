@@ -13,11 +13,11 @@ const MembershipSection = () => {
             icon: FiZap
         },
         {
-            name: "Enterprise",
+            name: "Pro",
             price: "89",
-            desc: "Elite protocols for professional performance.",
-            features: ["Advanced Biometric Sync", "Pro Diet Micro-Tracking", "Full AI Voice Coaching", "Early Feature Access", "Priority Support"],
-            btnText: "Scale to Enterprise",
+            desc: "Everything you need for serious training.",
+            features: ["Personal Training Sync", "Meal-by-Meal Tracking", "Full AI Voice Coaching", "New Feature Early Access", "Priority Support"],
+            btnText: "Switch to Pro",
             highlight: true,
             icon: FiStar
         }
@@ -30,9 +30,9 @@ const MembershipSection = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-12 sm:mb-20 animate-fade-in">
-                    <h2 className="mb-4">Tailored Performance Tiers.</h2>
+                    <h2 className="mb-4">Choose Your Plan.</h2>
                     <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto px-4">
-                        Choose the operating system that matches your ambition. No hidden fees, just pure results.
+                        Pick the version of GymVerse that fits your goals. No hidden fees, just great results.
                     </p>
                 </div>
 

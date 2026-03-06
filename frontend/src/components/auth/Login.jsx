@@ -30,16 +30,24 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0a0a0b] p-4">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0a0a0b] p-4 py-8">
+      <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
+        <Link to="/" className="flex items-center gap-2 text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-400 hover:text-primary-500 transition-colors group">
+          <div className="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-900 flex items-center justify-center group-hover:bg-primary-500 group-hover:text-white transition-all">
+            <FiArrowRight className="rotate-180" size={14} />
+          </div>
+          Home
+        </Link>
+      </div>
+
       <div className="w-full max-w-md">
 
-        <div className="text-center mb-12">
-          <Link to="/" className="inline-block text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter hover:scale-105 transition-transform">
-            GYM<span className="text-primary-500">VERSE</span>
-          </Link>
-          <p className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-relaxed">
-            Secure Terminal Access <br />
-            <span className="text-xs opacity-60">ENCRYPTION ACTIVE</span>
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tighter">
+            Welcome <span className="text-primary-500">Back.</span>
+          </h2>
+          <p className="text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-relaxed">
+            Sign in to your account
           </p>
         </div>
 
@@ -47,7 +55,7 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
 
             <div>
-              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Identity Credentials</label>
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Email Address</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
                   <FiMail size={18} />
@@ -55,7 +63,7 @@ const Login = () => {
                 <input
                   name="email"
                   type="email"
-                  placeholder="name@example.com"
+                  placeholder="your@email.com"
                   required
                   value={formData.email}
                   onChange={handleChange}
@@ -65,7 +73,7 @@ const Login = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Access Key</label>
+              <label className="block text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Password</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary-500 transition-colors">
                   <FiLock size={18} />
@@ -92,7 +100,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center py-3.5 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold rounded-xl transition-all"
+              className="w-full flex items-center justify-center py-3 bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold rounded-xl transition-all"
             >
               {loading ? (
                 <span className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
@@ -107,9 +115,9 @@ const Login = () => {
 
         <div className="mt-6 text-center">
           <p className="text-sm text-slate-600 dark:text-slate-400">
-            Don't have an access pass?{' '}
+            Don't have an account?{' '}
             <Link to="/register" className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
-              Start Free Trial
+              Create Account
             </Link>
           </p>
         </div>

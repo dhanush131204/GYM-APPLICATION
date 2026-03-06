@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -121,58 +121,69 @@ const AppRoutes = () => {
   );
 };
 
+const Layout = ({ children }) => {
+  const { pathname } = useLocation();
+  const hideNavFooter = ['/login', '/register', '/forgot-password'].includes(pathname);
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {!hideNavFooter && <Navbar />}
+      <main className="flex-grow">
+        {children}
+      </main>
+      {!hideNavFooter && <Footer />}
+    </div>
+  );
+};
+
 function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
         <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <ErrorBoundary>
-            <div className="min-h-screen flex flex-col">
-              <Navbar />
-              <main className="flex-grow">
-                <AppRoutes />
-              </main>
-              <Footer />
-              <Toaster
-                position="top-right"
-                toastOptions={{
+            <Layout>
+              <AppRoutes />
+            </Layout>
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                style: {
+                  background: '#0F172A',
+                  color: '#fff',
+                  border: '1px solid #1e293b',
+                  padding: '16px',
+                  borderRadius: '16px',
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                },
+                success: {
+                  iconTheme: {
+                    primary: '#8b5cf6',
+                    secondary: '#fff',
+                  },
                   style: {
-                    background: '#0F172A',
-                    color: '#fff',
-                    border: '1px solid #1e293b',
-                    padding: '16px',
-                    borderRadius: '16px',
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
+                    border: '1px solid rgba(139, 92, 246, 0.2)',
+                  }
+                },
+                error: {
+                  iconTheme: {
+                    primary: '#f59e0b',
+                    secondary: '#fff',
                   },
-                  success: {
-                    iconTheme: {
-                      primary: '#8b5cf6',
-                      secondary: '#fff',
-                    },
-                    style: {
-                      border: '1px solid rgba(139, 92, 246, 0.2)',
-                    }
-                  },
-                  error: {
-                    iconTheme: {
-                      primary: '#f59e0b',
-                      secondary: '#fff',
-                    },
-                    style: {
-                      border: '1px solid rgba(245, 158, 11, 0.2)',
-                      color: '#fcd34d'
-                    }
-                  },
-                }}
-              />
-            </div>
+                  style: {
+                    border: '1px solid rgba(245, 158, 11, 0.2)',
+                    color: '#fcd34d'
+                  }
+                },
+              }}
+            />
           </ErrorBoundary>
         </Router>
       </AuthProvider>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 

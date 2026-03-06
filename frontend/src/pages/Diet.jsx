@@ -82,14 +82,14 @@ const Diet = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 border-b border-slate-100 dark:border-slate-800/50 pb-12">
         <div>
-          <h1 className="text-5xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-3">Equilibrium <span className="text-primary-500">Protocol.</span></h1>
-          <p className="text-sm font-bold text-slate-500 uppercase tracking-widest leading-relaxed">Precision macro-nutrient orchestration & metabolic tracking.</p>
+          <h1 className="text-5xl font-black text-slate-900 dark:text-white uppercase tracking-tighter mb-3">Diet <span className="text-primary-500">Plan.</span></h1>
+          <p className="text-sm font-bold text-slate-500 uppercase tracking-widest leading-relaxed">Track your macros and reach your fitness goals.</p>
         </div>
         <button
           onClick={() => setShowPlanner(!showPlanner)}
           className="btn-primary px-8 py-5 rounded-2xl shadow-glow"
         >
-          {showPlanner ? 'Terminate Planner' : <><FiPlus size={18} /> New Nutrition Protocol</>}
+          {showPlanner ? 'Close Planner' : <><FiPlus size={18} /> New Diet Plan</>}
         </button>
       </div>
 
@@ -106,15 +106,15 @@ const Diet = () => {
           <div className="w-24 h-24 bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 rounded-3xl flex items-center justify-center mx-auto mb-10 transform -rotate-6 shadow-glow">
             <FiZap size={48} />
           </div>
-          <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tighter">Metabolic <span className="text-primary-500">Optimization.</span></h3>
+          <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tighter">Your <span className="text-primary-500">Nutrition.</span></h3>
           <p className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-12 leading-relaxed uppercase tracking-[0.2em]">
-            Fuel your performance data. Neural algorithms required to calibrate macro-nutrient targets.
+            Get a personalized diet plan to fuel your workouts and stay healthy.
           </p>
           <button
             onClick={() => setShowPlanner(true)}
             className="btn-primary px-12 py-5 rounded-[1.5rem] shadow-glow"
           >
-            <FiPlus size={20} /> Initialize Protocol
+            <FiPlus size={20} /> Create Plan
           </button>
         </div>
       )}
@@ -138,7 +138,7 @@ const Diet = () => {
                       </span>
                     </div>
                     <p className="text-xs font-bold text-slate-400 flex items-center gap-3 uppercase tracking-widest">
-                      <FiCalendar size={14} className="text-primary-500" /> Synchronization Origin: {new Date(diet.createdAt).toLocaleDateString()}
+                      <FiCalendar size={14} className="text-primary-500" /> Created On: {new Date(diet.createdAt).toLocaleDateString()}
                     </p>
                   </div>
 
@@ -146,25 +146,25 @@ const Diet = () => {
                     onClick={() => handleDeleteDiet(diet._id)}
                     className="flex items-center gap-2 px-6 py-3 text-xs font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/20 transition-all border border-slate-50 dark:border-slate-900/30 rounded-xl"
                   >
-                    <FiTrash2 /> Purge Protocol
+                    <FiTrash2 /> Delete Plan
                   </button>
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-inner">
                   <div className="text-center">
-                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Target Calories</p>
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Daily Calories</p>
                     <p className="text-3xl font-black text-slate-900 dark:text-white tabular-nums">{diet.targetCalories}</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Protein Threshold</p>
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Protein</p>
                     <p className="text-3xl font-black text-primary-500 tabular-nums">{diet.targetProtein}g</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Glucids Matrix</p>
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Carbs</p>
                     <p className="text-3xl font-black text-secondary-500 tabular-nums">{diet.targetCarbs}g</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Lipidic Density</p>
+                    <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Fats</p>
                     <p className="text-3xl font-black text-primary-400 tabular-nums">{diet.targetFats}g</p>
                   </div>
                 </div>

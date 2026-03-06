@@ -58,7 +58,7 @@ const Chatbot = () => {
             <div className="bg-slate-900 dark:bg-slate-950 p-4 flex justify-between items-center border-b border-slate-800">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <h3 className="font-bold text-white text-sm">Support AI</h3>
+                <h3 className="font-bold text-white text-sm">Assistant</h3>
               </div>
               <div className="flex gap-2">
                 <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-white transition-colors">

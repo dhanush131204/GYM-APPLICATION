@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">GYMVERSE</h3>
             <p className="text-sm leading-relaxed max-w-xs">
-              The enterprise standard for personal fitness. Data-driven training optimized for your biology.
+              The modern way to stay fit. Intelligent workout and diet tracking to help you reach your goals.
             </p>
           </div>
 

@@ -12,7 +12,7 @@
   html {
     /* Refined scale: 14px at 320px -> 16px at 1440px (More professional, less "toy-like") */
     font-size: clamp(14px, 0.25vw + 13.5px, 16px);
-    /* Overall website zoom reduced to 80% */
+    /* Overall website zoom optimized for professional look */
     zoom: 0.8;
   }
 

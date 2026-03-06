@@ -123,7 +123,7 @@ const ExerciseDetail = () => {
                                     <div>
                                         <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
                                             <div className="w-10 h-10 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 flex items-center justify-center text-xs border border-primary-100 dark:border-primary-800/50">01</div>
-                                            Execution Protocol
+                                            Instructions
                                         </h3>
                                         <ol className="space-y-6 pl-6 border-l-2 border-slate-100 dark:border-slate-800 ml-5">
                                             {exercise.steps.map((step, i) => (
@@ -138,7 +138,7 @@ const ExerciseDetail = () => {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div className="bg-primary-50 dark:bg-primary-900/10 border border-primary-100 dark:border-primary-900/20 rounded-[1.5rem] p-6 shadow-sm">
                                             <h3 className="text-xs font-black text-primary-600 dark:text-primary-400 mb-4 flex items-center gap-3 uppercase tracking-widest">
-                                                <FiAlertCircle size={14} /> Deviation Alerts
+                                                <FiAlertCircle size={14} /> Watch Out For
                                             </h3>
                                             <ul className="space-y-3">
                                                 {exercise.commonMistakes.map((m, i) => (
@@ -150,7 +150,7 @@ const ExerciseDetail = () => {
                                         </div>
                                         <div className="bg-secondary-50 dark:bg-secondary-900/10 border border-secondary-100 dark:border-secondary-900/20 rounded-[1.5rem] p-6 shadow-sm">
                                             <h3 className="text-xs font-black text-secondary-600 dark:text-secondary-400 mb-4 flex items-center gap-3 uppercase tracking-widest">
-                                                <FiActivity size={14} /> Pulmonary Sync
+                                                <FiActivity size={14} /> Breathing Technique
                                             </h3>
                                             <p className="text-xs font-bold text-secondary-800 dark:text-secondary-300/80 uppercase tracking-wide leading-relaxed">
                                                 {exercise.breathing}
@@ -168,7 +168,7 @@ const ExerciseDetail = () => {
                     <div className="lg:col-span-1 space-y-6">
                         <div className="bg-white dark:bg-[#111214] border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-8 sm:p-10 sticky top-12 shadow-premium">
                             <div className="text-center mb-10">
-                                <div className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-4">Neural Timer</div>
+                                <div className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-4">Workout Timer</div>
                                 <div className="text-7xl font-black text-slate-900 dark:text-white font-mono tracking-tighter tabular-nums mb-2">
                                     {formatTime(timer)}
                                 </div>
@@ -195,7 +195,7 @@ const ExerciseDetail = () => {
                                     onClick={() => setIsTimerRunning(false)}
                                     className="w-full py-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold mb-4 shadow-lg shadow-amber-500/30 transition-all"
                                 >
-                                    Pause Session
+                                    Pause Workout
                                 </button>
                             )}
 

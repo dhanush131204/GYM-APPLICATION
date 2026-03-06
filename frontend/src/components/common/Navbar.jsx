@@ -44,9 +44,9 @@ const Navbar = () => {
                 <div className="flex items-center gap-6 text-sm font-black uppercase tracking-[0.2em] text-slate-400">
                   <Link to="/dashboard" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Dashboard</Link>
                   <Link to="/workouts" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Workouts</Link>
-                  <Link to="/diet" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Equilibrium</Link>
-                  <Link to="/exercises" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Protocols</Link>
-                  <Link to="/plans" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Tiers</Link>
+                  <Link to="/diet" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Diet</Link>
+                  <Link to="/exercises" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Exercises</Link>
+                  <Link to="/plans" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Plans</Link>
                 </div>
 
                 <div className="h-8 w-px bg-slate-200 dark:bg-slate-800 mx-2"></div>
@@ -83,7 +83,7 @@ const Navbar = () => {
                         </Link>
                         <div className="h-px bg-slate-100 dark:bg-slate-800/50 my-2 mx-6"></div>
                         <button onClick={handleLogout} className="flex w-full items-center gap-4 px-6 py-3.5 text-sm font-black uppercase tracking-widest text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/10 transition-all">
-                          <FiLogOut size={18} /> Terminate Session
+                          <FiLogOut size={18} /> Logout
                         </button>
                       </div>
                     )}
@@ -141,15 +141,15 @@ const Navbar = () => {
               <div className="grid grid-cols-1 gap-2">
                 <Link to="/dashboard" onClick={handleLinkClick} className="flex items-center gap-4 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50">Dashboard</Link>
                 <Link to="/workouts" onClick={handleLinkClick} className="flex items-center gap-4 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50">Workouts</Link>
-                <Link to="/diet" onClick={handleLinkClick} className="flex items-center gap-4 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50">Equilibrium</Link>
-                <Link to="/exercises" onClick={handleLinkClick} className="flex items-center gap-4 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50">Protocols</Link>
-                <button onClick={handleLogout} className="flex items-center gap-4 w-full text-left px-8 py-6 rounded-2xl font-black text-xs uppercase tracking-[0.2em] text-amber-600 bg-amber-50 dark:bg-amber-900/10 mt-6 shadow-sm">Terminate Session</button>
+                <Link to="/diet" onClick={handleLinkClick} className="flex items-center gap-4 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50">Diet</Link>
+                <Link to="/exercises" onClick={handleLinkClick} className="flex items-center gap-4 px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900/50">Exercises</Link>
+                <button onClick={handleLogout} className="flex items-center gap-4 w-full text-left px-8 py-6 rounded-2xl font-black text-xs uppercase tracking-[0.2em] text-amber-600 bg-amber-50 dark:bg-amber-900/10 mt-6 shadow-sm">Logout</button>
               </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-6">
-              <Link to="/login" onClick={handleLinkClick} className="w-full text-center px-8 py-5 rounded-2xl border border-slate-200 dark:border-slate-800 font-black text-sm uppercase tracking-[0.2em] text-slate-900 dark:text-white">Access Portal</Link>
-              <Link to="/register" onClick={handleLinkClick} className="w-full text-center px-8 py-6 rounded-2xl bg-primary-600 text-white font-black text-sm uppercase tracking-[0.2em] shadow-glow">Initialize Account</Link>
+              <Link to="/login" onClick={handleLinkClick} className="w-full text-center px-8 py-5 rounded-2xl border border-slate-200 dark:border-slate-800 font-black text-sm uppercase tracking-[0.2em] text-slate-900 dark:text-white">Login</Link>
+              <Link to="/register" onClick={handleLinkClick} className="w-full text-center px-8 py-6 rounded-2xl bg-primary-600 text-white font-black text-sm uppercase tracking-[0.2em] shadow-glow">Create Account</Link>
             </div>
           )}
         </div>

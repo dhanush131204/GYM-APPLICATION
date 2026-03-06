@@ -16,7 +16,7 @@ const AiCoach = ({ exerciseName }) => {
                 const res = await api.post('/exercises/ask-ai', { exerciseName });
                 setMessages([{ role: 'ai', content: res.data }]);
             } catch (err) {
-                setError("SYNCHRONIZATION ERROR: UNABLE TO REACH NEURAL HUB");
+                setError("EXPERIENCING CONNECTION ISSUES: UNABLE TO REACH AI COACH");
             } finally {
                 setLoading(false);
             }
@@ -48,7 +48,7 @@ const AiCoach = ({ exerciseName }) => {
         } catch (err) {
             setMessages(prev => [...prev, {
                 role: 'ai',
-                content: { message: "PROTOCOL INTERRUPTED: RETRY COMMAND" }
+                content: { message: "MESSAGE INTERRUPTED: PLEASE RETRY" }
             }]);
         } finally {
             setLoading(false);
@@ -74,8 +74,8 @@ const AiCoach = ({ exerciseName }) => {
                         <FiCpu className="text-primary-500" size={24} />
                     </div>
                     <div>
-                        <span className="block text-xs font-black text-slate-900 dark:text-white uppercase tracking-[0.2em]">Neural Intelligence Hub</span>
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Live Diagnostic Active</span>
+                        <span className="block text-xs font-black text-slate-900 dark:text-white uppercase tracking-[0.2em]">Smart AI Coach</span>
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Active and ready to help</span>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@ const AiCoach = ({ exerciseName }) => {
                                     <div className="flex items-center gap-3">
                                         <FiActivity className="text-primary-500" size={14} />
                                         <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
-                                            {msg.content.isAi ? 'Validated Insight' : 'System Protocol'}
+                                            {msg.content.isAi ? 'Coach Suggestion' : 'App Message'}
                                         </span>
                                     </div>
 
@@ -107,7 +107,7 @@ const AiCoach = ({ exerciseName }) => {
                                     {msg.content.videoUrl && (
                                         <div className="bg-white dark:bg-slate-950 rounded-[2rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
                                             <h4 className="text-xs font-black text-primary-500 mb-6 flex items-center gap-3 uppercase tracking-[0.3em]">
-                                                <FiActivity size={16} /> Neural Broadcast
+                                                <FiActivity size={16} /> Training Video
                                             </h4>
                                             <div className="aspect-video w-full rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 flex items-center justify-center shadow-inner">
                                                 <iframe
@@ -126,7 +126,7 @@ const AiCoach = ({ exerciseName }) => {
                                             {msg.content.steps && msg.content.steps.length > 0 && (
                                                 <div className="bg-white dark:bg-slate-950 rounded-[1.5rem] p-6 border border-slate-100 dark:border-slate-800 shadow-sm">
                                                     <h4 className="text-xs font-black text-emerald-500 mb-4 flex items-center gap-3 uppercase tracking-[0.3em]">
-                                                        <FiCheckCircle size={14} /> Optimal Execution
+                                                        <FiCheckCircle size={14} /> Correct Form
                                                     </h4>
                                                     <ul className="space-y-4">
                                                         {msg.content.steps.map((s, i) => (
@@ -141,7 +141,7 @@ const AiCoach = ({ exerciseName }) => {
                                             {msg.content.mistakes && msg.content.mistakes.length > 0 && (
                                                 <div className="bg-white dark:bg-slate-950 rounded-[1.5rem] p-6 border border-slate-100 dark:border-slate-800 shadow-sm">
                                                     <h4 className="text-xs font-black text-primary-500 mb-4 flex items-center gap-3 uppercase tracking-[0.3em]">
-                                                        <FiAlertTriangle size={14} /> Critical Deviations
+                                                        <FiAlertTriangle size={14} /> Avoid These Mistakes
                                                     </h4>
                                                     <ul className="space-y-4">
                                                         {msg.content.mistakes.map((m, i) => (
@@ -183,7 +183,7 @@ const AiCoach = ({ exerciseName }) => {
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        placeholder={`ENTER INQUIRY RE: ${exerciseName.toUpperCase()}...`}
+                        placeholder={`ASK ABOUT ${exerciseName.toUpperCase()}...`}
                         className="w-full bg-white dark:bg-[#0a0a0b] border border-slate-200 dark:border-slate-800 rounded-2xl py-5 px-8 pr-20 outline-none focus:ring-2 focus:ring-primary-500/50 transition-all text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-700"
                     />
                     <button

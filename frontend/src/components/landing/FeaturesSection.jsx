@@ -4,26 +4,26 @@ import { FiActivity, FiTarget, FiUsers, FiZap, FiCpu } from 'react-icons/fi';
 const features = [
     {
         icon: FiZap,
-        title: 'Neural Engine',
-        desc: 'Advanced biomechanical analysis protocols that optimize every repetition in real-time.',
+        title: 'Smart AI Trainer',
+        desc: 'Intelligent analysis that helps you get the most out of every single move.',
         accent: 'indigo'
     },
     {
         icon: FiTarget,
-        title: 'Adaptive Strategy',
-        desc: 'Dynamic protocol adjustments that evolve with your physiological performance markers.',
+        title: 'Personalized Plans',
+        desc: 'Workouts that change and grow as you get stronger and reach new goals.',
         accent: 'slate'
     },
     {
         icon: FiActivity,
-        title: 'Bio-Analytics',
-        desc: 'Deep-layer data synthesis of sleep patterns, HRV, and metabolic efficiency.',
+        title: 'Health Insights',
+        desc: 'Detailed tracking of your progress, sleep patterns, and daily energy levels.',
         accent: 'slate'
     },
     {
         icon: FiUsers,
-        title: 'Elite Network',
-        desc: 'Encrypted communication channel with world-class coaches and high-performance peers.',
+        title: 'Community Support',
+        desc: 'Connect with professional coaches and a community that keeps you motivated.',
         accent: 'slate'
     }
 ];
@@ -34,12 +34,11 @@ const FeaturesSection = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 sm:mb-24 max-w-3xl animate-fade-in text-center md:text-left">
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] sm:text-xs font-black uppercase tracking-widest rounded-lg mb-6 mx-auto md:mx-0">
-                        System Architecture
+                        How it Works
                     </div>
-                    <h2 className="mb-8">Precision-Engineered <br /> <span className="text-slate-400 dark:text-slate-500 font-black">For Human Optimization.</span></h2>
+                    <h2 className="mb-8">Built to Help You <br /> <span className="text-slate-400 dark:text-slate-500 font-black">Reach Your Best.</span></h2>
                     <p className="text-base sm:text-xl text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
-                        We eliminated superficial metrics to focus on quantifiable physiological progression.
-                        The OS combines verified sports science with enterprise-grade neural networks.
+                        We focus on the results that matter most to your health. Our app uses modern science and smart AI to keep you on track.
                     </p>
                 </div>
 
